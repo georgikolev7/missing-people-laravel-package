@@ -1,0 +1,32 @@
+{
+    "name": "slavic/missing-persons",
+    "description": "Laravel package for publishing missing persons",
+    "license": "GNU GPL v3",
+    "authors": [
+        {
+            "name": "Georgi Kolev",
+            "email": "georgi.kolev.7@yandex.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Slavic\\MissingPersons\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Slavic\\MissingPersons\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Slavic\\MissingPersons\\MissingPersonsServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "laravel-frontend-presets/tailwindcss": "^1.0",
+    }
+}
