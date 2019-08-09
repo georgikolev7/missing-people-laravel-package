@@ -9,8 +9,13 @@ class MissingPersonsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/web.php');
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations/');
+        
+        $this->app['router']->namespace('Slavic\\MissingPersons\\Http\\Controllers')
+                ->middleware(['web'])
+                ->group(function () {
+                    $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/web.php');
+                });
     }
     
     public function register()
