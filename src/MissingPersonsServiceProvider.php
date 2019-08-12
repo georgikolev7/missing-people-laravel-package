@@ -3,6 +3,7 @@
 namespace Slavic\MissingPersons;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 class MissingPersonsServiceProvider extends ServiceProvider
@@ -10,12 +11,8 @@ class MissingPersonsServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations/');
-        
-        $this->app['router']->namespace('Slavic\\MissingPersons\\Http\\Controllers')
-                ->middleware(['web'])
-                ->group(function () {
-                    $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/web.php');
-                });
+        $this->registerRoutes();
+        $this->registerResources();
     }
     
     public function register()
@@ -25,34 +22,29 @@ class MissingPersonsServiceProvider extends ServiceProvider
         }
     }
     
-    
-    private function publishMigrations()
+    /**
+     * Register the MissingPersons routes.
+     *
+     * @return void
+     */
+    protected function registerRoutes()
     {
-        $migrations = [
-            'CreateRegionsTable',
-            'CreateSettlementsTable',
-            'CreateColorsTables',
-            'CreatePersonsTable',
-            'CreatePersonLastPlaceTable',
-            'CreatePersonPhotoTable'
-        ];
-
-        if ($this->app->runningInConsole()) {
-            foreach ($migrations as $migration) {
-                $this->publishMigration($migration);
-            }
-        }
+        Route::group([
+            'namespace' => 'Slavic\MissingPersons\Http\Controllers',
+            'middleware' => 'web',
+        ], function () {
+            $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/web.php');
+        });
     }
     
-    
-    private function publishMigration($migration)
+    /**
+     * Register the MissingPersons resources.
+     *
+     * @return void
+     */
+    protected function registerResources()
     {
-        if (!class_exists($migration)) {
-            $timestamp = date('Y_m_d_His', time());
-            $this->publishes([
-                dirname(__DIR__, 1) . '/database/migrations/' . Str::snake($migration) . '.php' => database_path('migrations/' . $timestamp . '_' . Str::snake($migration) . '.php'),
-            ], 'migrations');
-        }
+        $this->loadViewsFrom(dirname(__DIR__, 1) . '/resources/views', 'missing-persons');
     }
     
     
