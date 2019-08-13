@@ -44,10 +44,16 @@ class PersonController extends Controller
                 }
             }
         }
+        
+        $genders = \Slavic\MissingPersons\Model\Gender::getSelectOptions();
+        $hair_colors = \Slavic\MissingPersons\Model\HairColor::getAll();
+        $eyes_colors = \Slavic\MissingPersons\Model\EyesColor::getAll();
        
         return view('missing-persons::persons.create', [
            'person' => $person,
-           'values' => $values
+           'genders' => $genders,
+           'hair_colors' => $hair_colors,
+           'eyes_colors' => $eyes_colors
        ]);
     }
     
