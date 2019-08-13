@@ -59,6 +59,16 @@ class Person extends Model
         return $this->hasOne('Slavic\MissingPersons\Model\LastPlace', 'person_id');
     }
     
+    public function eyes_color()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\EyesColor', 'eyes_color');
+    }
+    
+    public function hair_color()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\HairColor', 'hair_color');
+    }
+    
     /**
      * Get latest published persons
      *
