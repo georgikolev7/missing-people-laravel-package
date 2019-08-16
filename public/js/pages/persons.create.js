@@ -61,7 +61,8 @@ $(document).ready(function () {
 			if (response.settlements.length) {
 				$('select#grid-settlement').removeClass('disabled').prop('disabled', false);
 				$.each(response.settlements, function (index, settlement) {
-					$('select#grid-settlement').append($("<option></option>").attr("value", settlement.id).text(settlement.name));
+					$('select#grid-settlement').append($('<option></option>')
+                    .attr('data-lng', settlement.lng).attr('data-lat', settlement.lat).attr("value", settlement.id).text(settlement.name));
 				});
 			}
 		});

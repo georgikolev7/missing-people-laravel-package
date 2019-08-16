@@ -2,6 +2,8 @@
 @section('page_css')
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/jquery.fileuploader.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/thumbnails-theme.css') }}" />
+    
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/lc_switch.css') }}" />
 @stop
 @section('content')
     <div class="w-full md:max-w-2xl mx-auto flex bg-white border border-1 rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
@@ -71,13 +73,26 @@
               
             </div>
             
+            <div class="-mx-3 md:flex mb-6">
+                <div class="md:w-full px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Описание</label>
+                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">Тест тестов</textarea>
+                </div>
+            </div>
+            
+            <div class="-mx-3 md:flex mb-2">
+                <div class="md:w-2/4 px-3">
+                    <h2 class="block uppercase tracking-wide text-grey-darker text-md font-bold mb-2">Последно местоположение</h2>
+                </div>
+            </div>
+            
             <div class="-mx-3 md:flex mb-2">
 	            <div class="md:w-2/4 px-3">
                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-region">Област</label>
                    <div class="relative">
                        <select name="region_id" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-region">
                            @foreach ($regions as $region)
-                               <option value="{{ $region->id }}">{{ $region->name }}</option>
+                               <option data-lat="{{ $region->lat }}" data-lng="{{ $region->lng }}" value="{{ $region->id }}">{{ $region->name }}</option>
                            @endforeach
                        </select>
                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -95,13 +110,6 @@
                       </div>
                   </div>
               </div>
-            </div> 
-            
-            <div class="-mx-3 md:flex mb-6">
-                <div class="md:w-full px-3 mb-6 md:mb-0">
-                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Описание</label>
-                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">Тест тестов</textarea>
-                </div>
             </div>
             
             <div class="-mx-3 md:flex mb-6">
@@ -126,5 +134,7 @@
 @section('page_js')
     <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/jquery.fileuploader.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/lc_switch.min.js') }}"></script>
+    
     <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.create.js') }}"></script>
 @stop
