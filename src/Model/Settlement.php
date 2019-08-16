@@ -34,4 +34,15 @@ class Settlement extends Model
     {
         return $this->belongsTo('Slavic\MissingPersons\Model\Region');
     }
+    
+    /**
+     * Find items by region.
+     *
+     * @return object
+     */
+    public static function getByRegion($region_id)
+    {
+        return self::where('region_id', '=', $region_id)->get();
+    }
+ 
 }

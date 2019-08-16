@@ -66,4 +66,14 @@ class PersonPhoto extends Model
             $photo->save();
         }
     }
+    
+    /**
+     * Find photos by person.
+     *
+     * @return object
+     */
+    public static function getByPerson($person_id)
+    {
+        return self::where('person_id', '=', $person_id)->get();
+    }
 }

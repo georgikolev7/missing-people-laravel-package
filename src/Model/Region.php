@@ -46,6 +46,6 @@ class Region extends Model
      */
     public static function getAll()
     {
-        return self::select('*');
+        return self::all();
     }
 }
