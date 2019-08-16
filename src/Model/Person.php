@@ -77,7 +77,7 @@ class Person extends Model
     public static function getLatest($number = 16)
     {
         $records = self::select(DB::raw(DB::getTablePrefix().'persons.*, ' . DB::getTablePrefix() . 'person_photo.thumb'))            ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
-        $records = $records->groupBy('persons.id')->orderBy('persons.date_added', 'DESC')->get();
+        $records = $records->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
         return $records->take($number);
     }
     
