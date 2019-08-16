@@ -8,9 +8,14 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    
+    @yield('page_css')
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
     <div id="app">
@@ -46,8 +51,21 @@
 
         @yield('content')
     </div>
+    
+    <?php
+        $collection = Route::getRoutes();
+        $routes = [];
+        foreach($collection as $route) {
+            $routes[$route->getName()] = $route->uri();
+        }
+    ?>
 
+    <script>
+        window.routes = @json($routes);
+    </script>
+
     <!-- Scripts -->
+    @yield('page_js')
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
