@@ -9,6 +9,15 @@ class LastPlace extends Model
     protected $table = 'person_last_place';
     
     /**
+    * The attributes that are mass assignable.
+    *
+    * @var array
+    */
+    protected $fillable = [
+        'person_id', 'address', 'lat', 'lng'
+    ];
+    
+    /**
      * Associations.
      *
      * @var object | collect

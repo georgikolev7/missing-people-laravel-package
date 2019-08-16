@@ -126,8 +126,7 @@ class PersonController extends Controller
                 'description' => 'required',
             ]);
             
-            // Update field
-            
+            // Update fields
             $person = \Slavic\MissingPersons\Model\Person::updateOrCreate([
                 'hash' => $hash,
                 'name' => $request->get('name'),
@@ -137,9 +136,18 @@ class PersonController extends Controller
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
-                'last_seen_date' => $request->get('last_seen_date'),
+                //'last_seen' => $request->get('last_seen_date'),
                 'region_id' => $request->get('region_id'),
                 'settlement_id' => $request->get('settlement_id')
+            ]);
+            
+            // Update last known place
+            $last_place = \Slavic\MissingPersons\Model\LastPlace::updateOrCreate([
+                'person_id' => $person->id,
+            ],[
+                'address' => $request->get('exact_address_text'),
+                'lat' => $request->get('exact_address_latitude'),
+                'lng'    => $request->get('exact_address_longitude')
             ]);
             
             return \Response::json($person, 200);

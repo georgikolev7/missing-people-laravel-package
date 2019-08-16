@@ -30,7 +30,6 @@ $(document).ready(function () {
     					$('input#item-id').val(data.id);
     					$('input#item-hash').val(data.hash);
     					var api = $.fileuploader.getInstance('.filename');
-                        console.log('uploadStart');
     					api.uploadStart();
     				}
     			},
@@ -53,7 +52,13 @@ $(document).ready(function () {
 			_token: $('meta[name="csrf-token"]').attr('content'),
 		};
         
-        var region_id = $('select#grid-region option:selected').val();
+        var region = $('select#grid-region option:selected');
+        var region_id = region.val();
+        
+        // Assign exact address
+        $('#exact-address-text').val(region.text());
+        $('#exact-address-latitude').val(region.data('lat'));
+        $('#exact-address-longitude').val(region.data('lng'));
         
 		$('select#grid-settlement').empty().addClass('disabled').prop('disabled', true);
         
@@ -62,12 +67,26 @@ $(document).ready(function () {
 				$('select#grid-settlement').removeClass('disabled').prop('disabled', false);
 				$.each(response.settlements, function (index, settlement) {
 					$('select#grid-settlement').append($('<option></option>')
-                    .attr('data-lng', settlement.lng).attr('data-lat', settlement.lat).attr("value", settlement.id).text(settlement.name));
+                    .attr('data-lng', settlement.lng).attr('data-lat', settlement.lat).attr('value', settlement.id).text(settlement.name));
 				});
 			}
 		});
         
 	});
+    
+    $(document).on('change', 'select#grid-settlement', function (e)
+    {
+        e.preventDefault();
+        
+        var region = $('select#grid-region option:selected');
+        var settlement = $('select#grid-settlement option:selected');
+        
+        // Update last location address
+        $('#exact-address-text').val(settlement.text() + ', ' + region.text());
+        $('#exact-address-latitude').val(settlement.data('lat'));
+        $('#exact-address-longitude').val(settlement.data('lng'));
+        
+    });
     
 	$('input.filename').fileuploader({
 		enableApi: true,

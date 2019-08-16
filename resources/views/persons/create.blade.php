@@ -118,8 +118,12 @@
                 </div>
             </div>
             
-            <input type="text" name="id" id="item-id" />
-            <input type="text" name="hash" id="item-hash" />
+            <input type="hidden" name="exact_address_text" value="" id="exact-address-text">
+            <input type="hidden" name="exact_address_latitude" value="" id="exact-address-latitude">
+            <input type="hidden" name="exact_address_longitude" value="" id="exact-address-longitude">
+            
+            <input type="hidden" name="id" id="item-id" />
+            <input type="hidden" name="hash" id="item-hash" />
            
            <div class="-mx-3 md:flex mb-6">
                <div class="md:w-full px-3 mb-6 md:mb-0">
