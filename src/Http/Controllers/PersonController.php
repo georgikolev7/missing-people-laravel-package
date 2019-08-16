@@ -26,6 +26,11 @@ class PersonController extends Controller
         ]);
     }
     
+    /**
+     * Get list of photos of the person
+     * @param  Reqeust $request
+     * @return \Illuminate\Http\Response
+     */
     public function list_photo(Reqeust $request)
     {
         $person_id = $request->input('id');
@@ -34,6 +39,11 @@ class PersonController extends Controller
         return response()->json(array('photos' => $photos));
     }
     
+    
+    /**
+     * Storing photos of the missing/wanted person
+     * @param  Request $request
+     */
     public function store_photo(Request $request)
     {
         $upload_path = \Slavic\MissingPersons\Model\PersonPhoto::dirPath($request->id);
@@ -123,9 +133,13 @@ class PersonController extends Controller
                 'name' => $request->get('name'),
                 'age' => $request->get('age'),
                 'height' => $request->get('height'),
+                'year_of_birth' => (date('Y') - $request->get('age')),
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
-                'description' => $request->get('description')
+                'description' => $request->get('description'),
+                'last_seen_date' => $request->get('last_seen_date'),
+                'region_id' => $request->get('region_id'),
+                'settlement_id' => $request->get('settlement_id')
             ]);
             
             return \Response::json($person, 200);
