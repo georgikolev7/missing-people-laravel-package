@@ -5,6 +5,7 @@ namespace Slavic\MissingPersons;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Illuminate\Filesystem\Filesystem;
 
 class MissingPersonsServiceProvider extends ServiceProvider
 {
@@ -13,13 +14,14 @@ class MissingPersonsServiceProvider extends ServiceProvider
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations/');
         $this->registerRoutes();
         $this->registerResources();
+        $this->defineAssetPublishing();
     }
     
     public function register()
     {
         if (!defined('MP_PATH')) {
             define('MP_PATH', realpath(__DIR__.'/../'));
-        }
+        } 
     }
     
     /**
@@ -45,6 +47,20 @@ class MissingPersonsServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         $this->loadViewsFrom(dirname(__DIR__, 1) . '/resources/views', 'missing-persons');
+    }
+    
+    
+    /**
+     * Define the asset publishing configuration.
+     *
+     * @return void
+     */
+    public function defineAssetPublishing()
+    {
+        //\File::deleteDirectory(public_path('vendor/missing'));
+        $this->publishes([
+            dirname(__DIR__, 1) . '/public' => public_path('vendor/missing'),
+        ], 'public');
     }
     
     
