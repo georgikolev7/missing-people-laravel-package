@@ -40,8 +40,7 @@ class RegionController extends Controller
         }
        
         return view('missing-persons::regions.create', [
-           'region' => $region,
-           'values' => $values
+           'region' => $region
        ]);
     }
     

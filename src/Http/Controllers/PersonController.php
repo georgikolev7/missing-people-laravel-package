@@ -4,6 +4,9 @@ namespace Slavic\MissingPersons\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Storage;
+use File;
+use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
 {
@@ -21,6 +24,33 @@ class PersonController extends Controller
         return view('missing-persons::persons.view', [
             'person' => $person
         ]);
+    }
+    
+    public function list_photo(Reqeust $request)
+    {
+        $person_id = $request->input('id');
+        $photos = \Slavic\MissingPersons\Model\PersonPhoto::getByPerson($person_id);
+        
+        return response()->json(array('photos' => $photos));
+    }
+    
+    public function store_photo(Request $request)
+    {
+        $upload_path = \Slavic\MissingPersons\Model\PersonPhoto::dirPath($request->id);
+        
+        if (!file_exists($upload_path))
+            File::makeDirectory($upload_path, 0755, true, true);
+        
+        $FileUploader = new FileUploader('filename', array(
+            'uploadDir' => $upload_path
+        ));
+        
+        $upload = $FileUploader->upload();
+      
+        if ($upload['isSuccess'])
+        {
+            \Slavic\MissingPersons\Model\PersonPhoto::createThumbnails($request->id, $upload['files']);
+        }
     }
     
     
@@ -48,12 +78,14 @@ class PersonController extends Controller
         $genders = \Slavic\MissingPersons\Model\Gender::getSelectOptions();
         $hair_colors = \Slavic\MissingPersons\Model\HairColor::getAll();
         $eyes_colors = \Slavic\MissingPersons\Model\EyesColor::getAll();
+        $regions = \Slavic\MissingPersons\Model\Region::getAll();
        
         return view('missing-persons::persons.create', [
            'person' => $person,
            'genders' => $genders,
            'hair_colors' => $hair_colors,
-           'eyes_colors' => $eyes_colors
+           'eyes_colors' => $eyes_colors,
+           'regions' => $regions
        ]);
     }
     
@@ -70,20 +102,33 @@ class PersonController extends Controller
     {
         $person = new \Slavic\MissingPersons\Model\Person();
         
+        $hash = mb_substr(md5(strtotime('now')), 0, 10, 'UTF-8');
+        
         // validate and save posted data
         if ($request->isMethod('post')) {
-            $this->validate($request, $region->getRules());
             
-            // Save region
-            $region->name = $request->name;
-            $region->save();
+            $validatedData = $request->validate([
+                'name' => 'required|max:255',
+                'age' => 'required',
+                'eyes_color' => 'required',
+                'hair_color' => 'required',
+                'height' => 'required',
+                'description' => 'required',
+            ]);
             
             // Update field
-            $region->updateFields($request->all());
             
-            // Redirect to my lists page
-            $request->session()->flash('alert-success', trans('messages.person.created'));
-            return redirect()->action('PersonController@index');
+            $person = \Slavic\MissingPersons\Model\Person::updateOrCreate([
+                'hash' => $hash,
+                'name' => $request->get('name'),
+                'age' => $request->get('age'),
+                'height' => $request->get('height'),
+                'eyes_color' => $request->get('eyes_color'),
+                'hair_color' => $request->get('hair_color'),
+                'description' => $request->get('description')
+            ]);
+            
+            return \Response::json($person, 200);
         }
     }
 }
