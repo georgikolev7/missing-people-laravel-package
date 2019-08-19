@@ -23,7 +23,7 @@
     
     // Persons
     Route::get('persons', 'PersonController@index')->name('persons.index');
-    Route::get('persons/edit/{hash}', 'PersonController@edit')->name('persons.edit');
+    Route::get('persons/edit/{hash}', 'PersonController@edit')->name('persons.edit')->middleware('auth');
     Route::get('persons/view/{hash}', 'PersonController@view')->name('persons.view');
     Route::post('persons/store', 'PersonController@store')->name('persons.store');
     Route::get('persons/create', 'PersonController@create')->name('persons.create');
