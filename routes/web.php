@@ -9,6 +9,9 @@
     // Index page
     Route::get('/', 'PersonController@index')->name('persons.index');
     
+    // Map page
+    Route::get('/map', 'MapController@index')->name('map.index');
+    
     // Regions
     Route::get('regions', 'RegionController@index')->name('regions.index');
     Route::get('regions/create', 'RegionController@create')->name('regions.create');
