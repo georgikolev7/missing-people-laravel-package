@@ -28,6 +28,7 @@
     "minimum-stability": "dev",
     "require": {
         "laravel-frontend-presets/tailwindcss": "^1.0",
-        "intervention/image": "^2.5"
+        "intervention/image": "^2.5",
+        "code4mk/lara-head": "dev-master"
     }
 }

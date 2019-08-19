@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Storage;
 use File;
+use Khead;
 use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
@@ -21,6 +22,25 @@ class PersonController extends Controller
     public function view(Request $request)
     {
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
+        
+        // SEO optimization
+        Khead::setTitle($person->name);
+        
+        $meta_description = strip_tags($person->description);
+        $meta_description = snippet($meta_description, 160);
+        
+        Khead::setMeta('description',[
+            'name' => 'description',
+            'content' => $meta_description
+        ]);
+        
+        Khead::setMeta('keywords',[
+            'name' => 'keywords',
+            'content' => $meta_description
+        ]);
+        
+        // End SEO optimization
+        
         return view('missing-persons::persons.view', [
             'person' => $person
         ]);

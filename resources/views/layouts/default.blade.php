@@ -7,10 +7,10 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title')</title>
+    {{ Khead::getTitle() }}
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
-    <meta name="description" content="@yield('description')">
-    <meta name="keywords" content="@yield('keywords')">
+    {{ Khead::getMeta('description') }}
+    {{ Khead::getMeta('keywords') }}
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -22,11 +22,11 @@
 </head>
 <body class="bg-gray-100 h-screen antialiased leading-none">
     <div id="app">
-        <nav class="bg-indigo-900 shadow mb-8 py-6">
+        <nav class="bg-indigo-900 shadow mb-8 py-4">
             <div class="container mx-auto px-6 md:px-0">
                 <div class="flex items-center justify-center">
-                    <div class="ml-6">
-                        <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
+                    <div class="ml-6 w-2/12">
+                        <a href="{{ url('/') }}" class="text-sm font-semibold text-gray-100 no-underline">
                             @lang('missing-persons::missing.site_title')
                         </a>
                     </div>
