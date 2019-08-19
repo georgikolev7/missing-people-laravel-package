@@ -26,6 +26,24 @@ class PersonController extends Controller
         ]);
     }
     
+    public function edit(Request $request)
+    {
+        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
+        
+        $genders = \Slavic\MissingPersons\Model\Gender::getSelectOptions();
+        $hair_colors = \Slavic\MissingPersons\Model\HairColor::getAll();
+        $eyes_colors = \Slavic\MissingPersons\Model\EyesColor::getAll();
+        $regions = \Slavic\MissingPersons\Model\Region::getAll();
+       
+        return view('missing-persons::persons.edit', [
+           'person' => $person,
+           'genders' => $genders,
+           'hair_colors' => $hair_colors,
+           'eyes_colors' => $eyes_colors,
+           'regions' => $regions
+       ]);
+    }
+    
     /**
      * Get list of photos of the person
      * @param  Reqeust $request
@@ -48,8 +66,9 @@ class PersonController extends Controller
     {
         $upload_path = \Slavic\MissingPersons\Model\PersonPhoto::dirPath($request->id);
         
-        if (!file_exists($upload_path))
+        if (!file_exists($upload_path)) {
             File::makeDirectory($upload_path, 0755, true, true);
+        }
         
         $FileUploader = new FileUploader('filename', array(
             'uploadDir' => $upload_path
@@ -57,8 +76,7 @@ class PersonController extends Controller
         
         $upload = $FileUploader->upload();
       
-        if ($upload['isSuccess'])
-        {
+        if ($upload['isSuccess']) {
             \Slavic\MissingPersons\Model\PersonPhoto::createThumbnails($request->id, $upload['files']);
         }
     }
@@ -116,7 +134,6 @@ class PersonController extends Controller
         
         // validate and save posted data
         if ($request->isMethod('post')) {
-            
             $validatedData = $request->validate([
                 'name' => 'required|max:255',
                 'age' => 'required',
@@ -144,7 +161,7 @@ class PersonController extends Controller
             // Update last known place
             $last_place = \Slavic\MissingPersons\Model\LastPlace::updateOrCreate([
                 'person_id' => $person->id,
-            ],[
+            ], [
                 'address' => $request->get('exact_address_text'),
                 'lat' => $request->get('exact_address_latitude'),
                 'lng'    => $request->get('exact_address_longitude')
