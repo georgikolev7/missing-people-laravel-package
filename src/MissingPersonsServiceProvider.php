@@ -11,6 +11,8 @@ class MissingPersonsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->requireHelpers();
+        
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations/');
         $this->registerRoutes();
         $this->registerResources();
@@ -23,6 +25,13 @@ class MissingPersonsServiceProvider extends ServiceProvider
             define('MP_PATH', realpath(__DIR__.'/../'));
         } 
     }
+    
+    
+    private function requireHelpers()
+    {
+        require_once __DIR__ . '/Helpers/sanitize_helpers.php';
+    }
+    
     
     /**
      * Register the MissingPersons routes.
