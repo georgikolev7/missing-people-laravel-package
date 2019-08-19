@@ -33,7 +33,7 @@
                     <div class="flex-1 text-right">
                         <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('map.index') }}">@lang('missing-persons::missing.map')</a>
                         <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('persons.index') }}">@lang('missing-persons::missing.missing_persons')</a>
-                        <a class="no-underline hover:underline text-gray-300 text-sm p-3" href="{{ route('persons.create') }}">@lang('missing-persons::missing.add_person')</a>
+                        <a class="rounded bg-white hover:bg-gray-100 no-underline hover:no-underline text-indigo-900 text-sm p-3" href="{{ route('persons.create') }}">@lang('missing-persons::missing.add_person')</a>
                     </div>
                 </div>
             </div>

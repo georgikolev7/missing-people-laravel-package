@@ -16,7 +16,7 @@
                 <div class="md:w-3/4 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Име на лицето</label>
                     <input value="Георги Петков Колев" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
-                    <p class="text-red text-xs italic">@lang('missing.please_fill_person_full_name')</p>
+                    <p class="text-red text-xs italic">@lang('missing-persons::missing.please_fill_person_full_name')</p>
                 </div>			
                 <div class="md:w-1/4 px-3">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">Възраст</label>
@@ -113,15 +113,14 @@
               </div>
             </div>
             
-            <div class="-mx-3 md:flex mb-6">
-                <div class="md:w-full px-3 mb-6 md:mb-0">
+            <div class="-mx-3 md:flex mt-4 mb-3">
+                <div class="md:w-full md:flex px-3 mb-6 md:mb-0">
                     <input type="checkbox" id="exact-address" name="exact_address" value="1" class="lcs_check" autocomplete="off" />
-                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">Искам да отбележа точното местоположение</label>
+                    <label class="ml-3 leading-loose md:w-3/4 block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">Искам да отбележа точното местоположение</label>
                 </div>
             </div>
             
             <div id="map-wrapper" style="display:none;">
-                
                 <div class="-mx-3 md:flex mb-2">
                     <div class="md:w-full px-3 mb-6 md:mb-0 flex">
                          <input placeholder="Въведете точен адрес" value="" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
@@ -134,7 +133,6 @@
                         <div id="map-box" style="height:180px;"></div>
                     </div>
                 </div>
-                
             </div>
             
             <div class="-mx-3 md:flex mb-6">

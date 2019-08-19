@@ -20,12 +20,17 @@
             </div>
 
             <div class="w-full overflow-hidden xl:my-1 xl:px-1 xl:w-1/2">
+                @auth
+                    <a href="{{ url('persons/edit/' . $person->hash) }}">@lang('missing-persons::missing.edit')</a>
+                    <a href="{{ url('persons/delete/' . $person->hash) }}">@lang('missing-persons::missing.delete')</a>
+                @endauth
+                
                 <ul class="list-none sm:list-disc md:list-decimal lg:list-disc xl:list-none">
                     <li><strong>@lang('missing-persons::missing.person_name'):</strong> {{ $person->name }}</li>
-                    <li><strong>@lang('missing-persons::missing.age'):</strong> {{ $person->age }} г.</li>
-                    <li><strong>@lang('missing-persons::missing.height'):</strong> {{ $person->height }} см</li>
+                    <li><strong>@lang('missing-persons::missing.age'):</strong> {{ $person->age }} @lang('missing-persons::missing.year_short')</li>
+                    <li><strong>@lang('missing-persons::missing.height'):</strong> {{ $person->height }} @lang('missing-persons::missing.cm')</li>
                     <li><strong>@lang('missing-persons::missing.gender'):</strong> {{ $person->sex }}</li>
-                    <li><strong>@lang('missing-persons::missing.year_of_birth'):</strong> {{ $person->year_of_birth }} г.</li>
+                    <li><strong>@lang('missing-persons::missing.year_of_birth'):</strong> {{ $person->year_of_birth }} @lang('missing-persons::missing.year_short')</li>
                     <li><strong>@lang('missing-persons::missing.last_seen_on'):</strong> {{ $person->last_seen }}</li>
                 </ul>
                 

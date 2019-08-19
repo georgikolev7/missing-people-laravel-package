@@ -174,3 +174,8 @@
 .fileuploader-theme-thumbnails .fileuploader-sorter-placeholder div {
     background: #fff;
 }
+.fileuploader
+{
+	margin: 0px;
+	padding: 0px;
+}
