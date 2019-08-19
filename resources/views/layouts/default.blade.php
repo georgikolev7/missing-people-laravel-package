@@ -62,6 +62,7 @@
 
     <script>
         window.routes = @json($routes);
+        window.translations = {!! Cache::get('translations') !!};
     </script>
 
     <!-- Scripts -->

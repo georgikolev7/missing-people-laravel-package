@@ -47,6 +47,12 @@ class MissingPersonsServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         $this->loadViewsFrom(dirname(__DIR__, 1) . '/resources/views', 'missing-persons');
+        
+        // Load translations
+        $this->loadTranslationsFrom(dirname(__DIR__, 1) . '/resources/lang', 'missing-persons');
+        $this->publishes([
+            dirname(__DIR__, 1) . '/resources/lang' => resource_path('lang/vendor/missing-persons'),
+        ]);
     }
     
     
