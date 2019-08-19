@@ -23,8 +23,6 @@ class CreatePersonsTable extends Migration
             $table->text('description');
             $table->integer('region_id')->unsigned();
             $table->integer('settlement_id')->unsigned();
-            $table->decimal('lat', 10, 8);
-            $table->decimal('lng', 11, 8);
             $table->tinyInteger('found');
             $table->dateTime('date_added');
             $table->date('date_found');
