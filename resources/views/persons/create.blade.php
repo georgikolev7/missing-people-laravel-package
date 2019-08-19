@@ -2,6 +2,7 @@
 @section('page_css')
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/jquery.fileuploader.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/thumbnails-theme.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" />
     
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/lc_switch.css') }}" />
 @stop
@@ -68,7 +69,7 @@
               
               <div class="md:w-1/4 px-3">
                   <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Ръст</label>
-                  <input value="174" name="height" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
+                  <input value="174" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
               </div>
               
             </div>
@@ -114,6 +115,30 @@
             
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-full px-3 mb-6 md:mb-0">
+                    <input type="checkbox" id="exact-address" name="exact_address" value="1" class="lcs_check" autocomplete="off" />
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">Искам да отбележа точното местоположение</label>
+                </div>
+            </div>
+            
+            <div id="map-wrapper" style="display:none;">
+                
+                <div class="-mx-3 md:flex mb-2">
+                    <div class="md:w-full px-3 mb-6 md:mb-0 flex">
+                         <input placeholder="Въведете точен адрес" value="" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
+                         <button type="button" id="button-search-address" class="appearance-none bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 md:w-1/4">Търсене</button>
+                    </div>
+                </div>
+                
+                <div class="-mx-3 md:flex mb-6">
+                    <div class="md:w-full px-3 mb-6 md:mb-0">
+                        <div id="map-box" style="height:180px;"></div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="-mx-3 md:flex mb-6">
+                <div class="md:w-full px-3 mb-6 md:mb-0">
                     <input type="file" id="file" class="filename" name="filename[]" data-fileuploader-extensions="jpg, png">
                 </div>
             </div>
@@ -140,5 +165,8 @@
     <script type="text/javascript" src="{{ asset('vendor/missing/js/jquery.fileuploader.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/lc_switch.min.js') }}"></script>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
+    
     <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.create.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.create.map.js') }}"></script>
 @stop
