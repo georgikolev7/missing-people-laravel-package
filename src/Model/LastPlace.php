@@ -3,6 +3,7 @@
 namespace Slavic\MissingPersons\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use DB;
 
 class LastPlace extends Model
 {
@@ -25,5 +26,17 @@ class LastPlace extends Model
     public function person()
     {
         return $this->belongsTo('Slavic\MissingPersons\Model\Person', 'person_id');
+    }
+    
+    /**
+     * Get all persons that are not found.
+     *
+     * @return object
+     */
+    public static function getNotFound()
+    {
+        $records = self::select(DB::raw(DB::getTablePrefix().'person_last_place.*, ' . DB::getTablePrefix() . 'persons.name'))->leftJoin('persons', 'persons.id', '=', 'person_last_place.person_id');
+        $records = $records->where('persons.found', 0)->groupBy('person_last_place.person_id')->orderBy('persons.created_at', 'DESC')->get();
+        return $records;
     }
 }

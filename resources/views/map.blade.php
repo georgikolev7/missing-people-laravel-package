@@ -14,11 +14,12 @@
     </div>
 @endsection
 
-<script>
-    var window.locations = <?php echo json_encode($locations); ?>;
-</script>
-
 @section('page_js')
+    
+    <script>
+        var window.locations = <?php echo json_encode($locations); ?>;
+    </script>
+    
     <script type="text/javascript" src="{{ asset('vendor/missing/js/leafletjs/leaflet.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/leafletjs/leaflet.markercluster/leaflet.markercluster.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/map.page.js') }}"></script>
