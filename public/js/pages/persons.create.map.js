@@ -4,6 +4,7 @@ $(function() {
     $(document).on('lcs-statuschange', '#exact-address', function() {
         if ($(this).is(':checked')) {
             $('#map-wrapper').fadeIn();
+            map.invalidateSize();
         } else {
             $('#map-wrapper').fadeOut();
         }
@@ -23,29 +24,29 @@ $(function() {
     
     var api_key = '97377b06ac014660977a7c06706ef1bf';
     var endpoint = 'http://api.opencagedata.com/geocode/v1/json?q=';
-    var encodedQuery = encodeURIComponent($('#map-address').val());
+    var marker;
 
     $('#button-search-address').on('click', function(e) {
+        
+        var encodedQuery = encodeURIComponent($('#map-address').val());
         var url = endpoint + encodedQuery + '&key=' + api_key;
         
         $.get(url, function(data) {
     		// Check your browser javascript console to look through the data
-    		console.log(data);
-
-    		//$('#address').text('Address: ' + data.results[0].formatted);
-    		//$('#lat').text('Lattitude: ' + data.results[0].geometry.lat);
-    		//$('#lng').text('Longitude: ' + data.results[0].geometry.lng);
+    		if (data.total_results)
+            {
+                $('#exact-address-text').val(data.results[0].formatted);
+        		$('#exact-address-latitude').val(data.results[0].geometry.lat);
+        		$('#exact-address-longitude').val(data.results[0].geometry.lng);
+                
+                if (marker == null) {
+                    marker = L.marker([data.results[0].geometry.lat, data.results[0].geometry.lng]).bindPopup(data.results[0].formatted).addTo(map).openPopup();
+                } else {
+                    marker.setLatLng([data.results[0].geometry.lat, data.results[0].geometry.lng]).setPopupContent(data.results[0].formatted).openPopup();
+                }
+            }
 
     	});
-        /*
-        if (res) {
-            if (marker) {
-                marker.setLatLng(r.center).setPopupContent(r.name).openPopup();
-            } else {
-                marker = L.marker(r.center).bindPopup(r.name).addTo(map).openPopup();
-            }
-        }
-        */
     });
 
 });
