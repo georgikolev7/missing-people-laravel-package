@@ -26,6 +26,25 @@ class PersonController extends Controller
         ]);
     }
     
+    
+    public function delete(Request $request)
+    {
+        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
+        $person_id = $person->id;
+        
+        // We should also delete folder with photos of the person
+        $photos_path = \Slavic\MissingPersons\Model\PersonPhoto::dirPath($person_id);
+        
+        // Delete photos directory
+        File::deleteDirectory($photos_path);
+        
+        // Delete the person
+        $person->delete();
+        
+        // Redirect to the homepage
+        return redirect()->action('\Slavic\MissingPersons\Http\Controllers\PersonController@index');
+    }
+    
     public function edit(Request $request)
     {
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);

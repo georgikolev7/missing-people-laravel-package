@@ -27,7 +27,7 @@
     Route::get('persons/view/{hash}', 'PersonController@view')->name('persons.view');
     Route::post('persons/store', 'PersonController@store')->name('persons.store');
     Route::get('persons/create', 'PersonController@create')->name('persons.create');
-    Route::get('persons/delete', 'PersonController@delete')->name('persons.delete');
+    Route::get('persons/delete/{hash}', 'PersonController@delete')->name('persons.delete');
     Route::post('persons/photo/store', 'PersonController@store_photo')->name('persons.store_photo');
     Route::get('persons/photo/list', 'PersonController@list_photo')->name('persons.list_photo');
     Route::post('persons/photo/list/sort_order', 'PersonController@list_photo_sort')->name('persons.list_photo_sort');
