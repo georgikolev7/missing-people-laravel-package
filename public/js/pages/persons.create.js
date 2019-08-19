@@ -1,5 +1,8 @@
 $(document).ready(function () {
     
+    // Exact address checkbox
+    $('input.lcs_check').lc_switch('ДА', 'НЕ');
+    
     // Validate the form fillings
     $('form#create-person-form').validate({
     	rules: {
