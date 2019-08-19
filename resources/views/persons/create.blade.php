@@ -130,7 +130,7 @@
                 
                 <div class="-mx-3 md:flex mb-6">
                     <div class="md:w-full px-3 mb-6 md:mb-0">
-                        <div id="map-box" style="height:180px;"></div>
+                        <div id="map-box" class="md:w-full" style="height:180px;"></div>
                     </div>
                 </div>
             </div>
