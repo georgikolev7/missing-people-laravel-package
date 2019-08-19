@@ -1,5 +1,9 @@
 @extends('missing-persons::layouts.default')
 
+@section('title', $person->name)
+@section('description', $person->description)
+@section('keywords', $person->description)
+
 @section('page_css')
     <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 @stop
@@ -17,16 +21,16 @@
 
             <div class="w-full overflow-hidden xl:my-1 xl:px-1 xl:w-1/2">
                 <ul class="list-none sm:list-disc md:list-decimal lg:list-disc xl:list-none">
-                    <li><strong>Име на лицето:</strong> {{ $person->name }}</li>
-                    <li><strong>Възраст:</strong> {{ $person->age }} г.</li>
-                    <li><strong>Ръст:</strong> {{ $person->height }} см</li>
-                    <li><strong>Пол:</strong> {{ $person->sex }}</li>
-                    <li><strong>Година на раждане:</strong> {{ $person->year_of_birth }} г.</li>
-                    <li><strong>Последно забелязан/а:</strong> {{ $person->last_seen }}</li>
+                    <li><strong>@lang('missing-persons::missing.person_name'):</strong> {{ $person->name }}</li>
+                    <li><strong>@lang('missing-persons::missing.age'):</strong> {{ $person->age }} г.</li>
+                    <li><strong>@lang('missing-persons::missing.height'):</strong> {{ $person->height }} см</li>
+                    <li><strong>@lang('missing-persons::missing.gender'):</strong> {{ $person->sex }}</li>
+                    <li><strong>@lang('missing-persons::missing.year_of_birth'):</strong> {{ $person->year_of_birth }} г.</li>
+                    <li><strong>@lang('missing-persons::missing.last_seen_on'):</strong> {{ $person->last_seen }}</li>
                 </ul>
                 
                 <div class="person-content">
-                    <h6>ОПИСАНИЕ:</h6>
+                    <h6>@lang('missing-persons::missing.description'):</h6>
                     <div class="">{{ $person->description }}</div>
                 </div>
                 
