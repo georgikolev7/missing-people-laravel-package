@@ -29,12 +29,12 @@ class PersonController extends Controller
         $meta_description = strip_tags($person->description);
         $meta_description = snippet($meta_description, 160);
         
-        Khead::setMeta('description',[
+        Khead::setMeta('description', [
             'name' => 'description',
             'content' => $meta_description
         ]);
         
-        Khead::setMeta('keywords',[
+        Khead::setMeta('keywords', [
             'name' => 'keywords',
             'content' => $meta_description
         ]);
@@ -172,8 +172,6 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        $person = new \Slavic\MissingPersons\Model\Person();
-        
         $hash = mb_substr(md5(strtotime('now')), 0, 10, 'UTF-8');
         
         // validate and save posted data
@@ -208,7 +206,58 @@ class PersonController extends Controller
             ], [
                 'address' => $request->get('exact_address_text'),
                 'lat' => $request->get('exact_address_latitude'),
-                'lng'    => $request->get('exact_address_longitude')
+                'lng' => $request->get('exact_address_longitude'),
+                'exact_address' => $request->get('exact_address')
+            ]);
+            
+            return \Response::json($person, 200);
+        }
+    }
+    
+    /**
+     * Update resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request)
+    {
+        // validate and save posted data
+        if ($request->isMethod('post')) {
+            $validatedData = $request->validate([
+                'name' => 'required|max:255',
+                'age' => 'required',
+                'eyes_color' => 'required',
+                'hair_color' => 'required',
+                'height' => 'required',
+                'description' => 'required',
+            ]);
+            
+            // Update fields
+            $person = \Slavic\MissingPersons\Model\Person::updateOrCreate([
+                'hash' => $request->get('hash'),
+            ], [
+                'name' => $request->get('name'),
+                'age' => $request->get('age'),
+                'height' => $request->get('height'),
+                'year_of_birth' => (date('Y') - $request->get('age')),
+                'eyes_color' => $request->get('eyes_color'),
+                'hair_color' => $request->get('hair_color'),
+                'description' => $request->get('description'),
+                //'last_seen' => $request->get('last_seen_date'),
+                'region_id' => $request->get('region_id'),
+                'settlement_id' => $request->get('settlement_id')
+            ]);
+            
+            // Update last known place
+            $last_place = \Slavic\MissingPersons\Model\LastPlace::updateOrCreate([
+                'person_id' => $person->id,
+            ], [
+                'address' => $request->get('exact_address_text'),
+                'lat' => $request->get('exact_address_latitude'),
+                'lng' => $request->get('exact_address_longitude'),
+                'exact_address' => $request->get('exact_address')
             ]);
             
             return \Response::json($person, 200);
