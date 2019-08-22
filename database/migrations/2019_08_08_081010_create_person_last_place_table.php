@@ -15,6 +15,7 @@ class CreatePersonLastPlaceTable extends Migration
             $table->decimal('lat', 10, 8);
             $table->decimal('lng', 11, 8);
             $table->string('address', 255);
+            $table->tinyInteger('exact_address');
         });
     }
     
