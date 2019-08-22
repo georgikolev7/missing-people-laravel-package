@@ -1,6 +1,5 @@
-<?php
-
-use Illuminate\Support\Facades\Schema;
+﻿<?php
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -21,7 +20,7 @@ class CreateSettlementsTable extends Migration
             $table->integer('people')->unsigned();
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('settlements');

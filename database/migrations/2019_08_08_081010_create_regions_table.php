@@ -1,6 +1,5 @@
-<?php
-
-use Illuminate\Support\Facades\Schema;
+﻿<?php
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
@@ -22,7 +21,7 @@ class CreateRegionsTable extends Migration
             $table->integer('sort_order')->unsigned();
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('regions');

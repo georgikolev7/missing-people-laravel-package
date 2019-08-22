@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -17,7 +17,7 @@ class CreatePersonLastPlaceTable extends Migration
             $table->string('address', 255);
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('person_last_place');

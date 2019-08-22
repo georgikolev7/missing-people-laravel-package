@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,7 +20,7 @@ class CreatePersonPhotoTable extends Migration
             $table->timestamps();
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('person_photo');

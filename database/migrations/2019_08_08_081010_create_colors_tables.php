@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +18,7 @@ class CreateColorsTables extends Migration
             $table->string('name', 55);
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('eyes_color');
