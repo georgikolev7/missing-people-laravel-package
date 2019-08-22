@@ -26,6 +26,7 @@
     Route::get('persons/edit/{hash}', 'PersonController@edit')->name('persons.edit')->middleware('auth');
     Route::get('persons/view/{hash}', 'PersonController@view')->name('persons.view');
     Route::post('persons/store', 'PersonController@store')->name('persons.store');
+    Route::post('persons/update', 'PersonController@update')->name('persons.update');
     Route::get('persons/create', 'PersonController@create')->name('persons.create');
     Route::get('persons/delete/{hash}', 'PersonController@delete')->name('persons.delete');
     Route::post('persons/photo/store', 'PersonController@store_photo')->name('persons.store_photo');

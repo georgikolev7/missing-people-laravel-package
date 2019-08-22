@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="w-full md:max-w-2xl mx-auto flex bg-white border border-1 rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-        <form action="{{ route('persons.store') }}" method="POST" id="edit-person-form" class="toggle-disabled">
+        <form action="{{ route('persons.update') }}" method="POST" id="edit-person-form" class="toggle-disabled">
             @method('POST')
             {{ csrf_field() }}
             
