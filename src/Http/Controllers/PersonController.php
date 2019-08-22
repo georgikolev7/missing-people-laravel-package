@@ -73,13 +73,18 @@ class PersonController extends Controller
         $hair_colors = \Slavic\MissingPersons\Model\HairColor::getAll();
         $eyes_colors = \Slavic\MissingPersons\Model\EyesColor::getAll();
         $regions = \Slavic\MissingPersons\Model\Region::getAll();
+        $settlements = [];
+        
+        // Settlements
+        $settlements = \Slavic\MissingPersons\Model\Settlement::getByRegion($person->region_id);
        
         return view('missing-persons::persons.edit', [
            'person' => $person,
            'genders' => $genders,
            'hair_colors' => $hair_colors,
            'eyes_colors' => $eyes_colors,
-           'regions' => $regions
+           'regions' => $regions,
+           'settlements' => $settlements
        ]);
     }
     
