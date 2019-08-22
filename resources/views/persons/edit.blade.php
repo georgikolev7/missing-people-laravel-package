@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="w-full md:max-w-2xl mx-auto flex bg-white border border-1 rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-        <form action="{{ route('persons.store') }}" method="POST" id="create-person-form" class="toggle-disabled">
+        <form action="{{ route('persons.store') }}" method="POST" id="edit-person-form" class="toggle-disabled">
             @method('POST')
             {{ csrf_field() }}
             
@@ -179,6 +179,6 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
     
-    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.create.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.create.map.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.edit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.edit.map.js') }}"></script>
 @stop
