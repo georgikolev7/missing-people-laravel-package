@@ -49,10 +49,14 @@ class PersonPhoto extends Model
             $upload_path = $file['name'];
             $ext = pathinfo($upload_path, PATHINFO_EXTENSION);
             $thumbnail_name = str_replace('.' . $ext, '_thumb.' . $ext, $file['file']);
+            $icon_name = str_replace('.' . $ext, '_icon.' . $ext, $file['file']);
             
             $img = \Image::make($file['file']);
             $img->fit(778, 1000)->save($file['file']);
             $img->fit(350, 450)->save($thumbnail_name);
+            
+            // Icon size for markers on the map
+            $img->fit(35, 45)->save($icon_name);
             
             $files[$key]['thumb'] = $thumbnail_name;
             
@@ -62,6 +66,7 @@ class PersonPhoto extends Model
             $photo->size = $file['size'];
             $photo->type = $file['type'];
             $photo->thumb = str_replace(storage_path('app/public/'), '', $thumbnail_name);
+            $photo->icon = str_replace(storage_path('app/public/'), '', $icon_name);
             $photo->person_id = $id;            
             $photo->save();
         }
