@@ -20,12 +20,12 @@
             <div class="-mx-3 md:flex mb-6">		
                 <div class="md:w-3/4 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Име на лицето</label>
-                    <input value="Георги Петков Колев" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
+                    <input value="" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
                     <p class="text-red text-xs italic">@lang('missing-persons::missing.please_fill_person_full_name')</p>
                 </div>			
                 <div class="md:w-1/4 px-3">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">Възраст</label>
-                    <input value="26" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
+                    <input value="" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
                 </div>
            </div>
           
@@ -74,7 +74,7 @@
               
               <div class="md:w-1/4 px-3">
                   <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Ръст</label>
-                  <input value="174" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
+                  <input value="" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
               </div>
               
             </div>
@@ -82,14 +82,14 @@
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-full px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="description">Описание</label>
-                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">Тест тестов</textarea>
+                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6"></textarea>
                 </div>
             </div>
             
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-1/4 px-3">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">Последно забелязан (дата)</label>
-                    <input data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
+                    <input data-date-format="yyyy-mm-dd" data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
                 </div>
             </div>
             
