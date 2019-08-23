@@ -19,6 +19,7 @@
                 @auth
                     <a href="{{ url('persons/edit/' . $person->hash) }}">@lang('missing-persons::missing.edit')</a>
                     <a href="{{ url('persons/delete/' . $person->hash) }}">@lang('missing-persons::missing.delete')</a>
+                    <button id="set-as-found" data-href="{{ url('persons/set_found/' . $person->hash) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">@lang('missing-persons::missing.set_found')</button>
                 @endauth
                 
                 <ul class="list-none sm:list-disc md:list-decimal lg:list-disc xl:list-none">
@@ -42,4 +43,5 @@
 
 @section('page_js')
     <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.view.js') }}"></script>
 @stop

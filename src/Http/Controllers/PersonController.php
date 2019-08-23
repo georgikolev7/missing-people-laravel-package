@@ -310,4 +310,22 @@ class PersonController extends Controller
             return \Response::json($person, 200);
         }
     }
+    
+    /**
+     * Update resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function set_found(Request $request)
+    {
+        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
+        
+        $person->found = 1;
+        $person->date_found = date('Y-m-d');
+        $person->save();
+        
+        return \Response::json($person, 200);
+    }
 }

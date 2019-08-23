@@ -27,6 +27,7 @@ return [
     'missing_persons' => 'Изчезнали лица',
     'wanted_persons' => 'Издирвани лица',
     'add_person' => 'Обявяване',
+    'set_found' => 'Отбелязване като "открито"',
     'page_title_map' => 'Карта на изчезналите лица',
     'page_person_create' => 'Обявяване на лице',
     'page_person_edit' => 'Промяна на данни',
