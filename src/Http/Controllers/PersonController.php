@@ -242,7 +242,7 @@ class PersonController extends Controller
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
-                //'last_seen' => $request->get('last_seen_date'),
+                'last_seen' => $request->get('last_seen_date'),
                 'region_id' => $request->get('region_id'),
                 'settlement_id' => $request->get('settlement_id')
             ]);
@@ -292,7 +292,7 @@ class PersonController extends Controller
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
-                //'last_seen' => $request->get('last_seen_date'),
+                'last_seen' => $request->get('last_seen_date'),
                 'region_id' => $request->get('region_id'),
                 'settlement_id' => $request->get('settlement_id')
             ]);
