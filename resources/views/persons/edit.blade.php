@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" />
     
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/lc_switch.css') }}" />
+    <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/js/air-datepicker/css/datepicker.min.css') }}" />
 @stop
 
 @section('content')
@@ -18,13 +19,13 @@
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-3/4 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Име на лицето</label>
-                    <input value="Георги Петков Колев" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
+                    <input value="{{ $person->name }}" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
                     <p class="text-red text-xs italic">@lang('missing-persons::missing.please_fill_person_full_name')</p>
                 </div>
 			
                 <div class="md:w-1/4 px-3">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">Възраст</label>
-                    <input value="26" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
+                    <input value="{{ $person->age }}" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
                 </div>
            </div>
 
@@ -36,7 +37,7 @@
                   <div class="relative">
                       <select name="sex" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                           @foreach ($genders as $gender)
-                              <option value="{{ $gender['id'] }}">{{ $gender['text'] }}</option>
+                              <option value="{{ $gender['id'] }}" {{ ($person->sex == $gender['id'] ? "selected":"") }}>{{ $gender['text'] }}</option>
                           @endforeach
                       </select>
 
@@ -52,7 +53,7 @@
                   <div class="relative">
                       <select name="eyes_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                           @foreach ($eyes_colors as $eye_color)
-                              <option value="{{ $eye_color->id }}">{{ $eye_color->name }}</option>
+                              <option value="{{ $eye_color->id }}" {{ ($person->eyes_color == $eye_color->id ? "selected":"") }}>{{ $eye_color->name }}</option>
                           @endforeach
                       </select>
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -66,7 +67,7 @@
                   <div class="relative">
                       <select name="hair_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                           @foreach ($hair_colors as $hair_color)
-                              <option value="{{ $hair_color->id }}">{{ $hair_color->name }}</option>
+                              <option value="{{ $hair_color->id }}" {{ ($person->hair_color == $hair_color->id ? "selected":"") }}>{{ $hair_color->name }}</option>
                           @endforeach
                       </select>
                       <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -77,7 +78,7 @@
               
               <div class="md:w-1/4 px-3">
                   <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Ръст</label>
-                  <input value="174" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
+                  <input value="{{ $person->height }}" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
               </div>
               
             </div>
@@ -85,7 +86,14 @@
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-full px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Описание</label>
-                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">Тест тестов</textarea>
+                    <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">{{ $person->description }}</textarea>
+                </div>
+            </div>
+            
+            <div class="-mx-3 md:flex mb-6">
+                <div class="md:w-1/4 px-3">
+                    <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">Последно забелязан (дата)</label>
+                    <input data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
                 </div>
             </div>
             
@@ -132,7 +140,7 @@
                 </div>
             </div>
             
-            <div id="map-wrapper" {{ ($person->last_place->exact_address == 1 ? '' : 'style="display:none;"') }}>
+            <div id="map-wrapper" @if($person->last_place->exact_address === 0) style="display:none;" @endif>
                 <div class="-mx-3 md:flex mb-2">
                     <div class="md:w-full px-3 mb-6 md:mb-0 flex">
                          <input placeholder="Въведете точен адрес" value="{{ $person->last_place->address }}" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
@@ -163,19 +171,20 @@
            <div class="-mx-3 md:flex mb-6">
                <div class="md:w-full px-3 mb-6 md:mb-0">
                    <button id="create-button" class="bg-indigo-800 leading-tight hover:bg-indigo-900 text-white font-bold py-4 px-6 w-full" type="submit">
-                       @lang('missing-persons::missing.submit_person')
+                       @lang('missing-persons::missing.save_edit_person')
                    </button>
                </div>
            </div>
         </form>
     </div>
-
 @endsection
 
 @section('page_js')
     <script src="//cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.min.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/jquery.fileuploader.js') }}"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/lc_switch.min.js') }}"></script>
+    
+    <script type="text/javascript" src="{{ asset('vendor/missing/js/air-datepicker/js/datepicker.min.js') }}"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.js"></script>
     
