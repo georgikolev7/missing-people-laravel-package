@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Storage;
 use File;
 use Khead;
+use Lang;
 use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
@@ -14,6 +15,22 @@ class PersonController extends Controller
     public function index()
     {
         $persons = \Slavic\MissingPersons\Model\Person::getLatest();
+        
+        // SEO optimization
+        Khead::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
+        
+        Khead::setMeta('description', [
+            'name' => 'description',
+            'content' => \Lang::get('missing-persons::missing.default_meta_description')
+        ]);
+        
+        Khead::setMeta('keywords', [
+            'name' => 'keywords',
+            'content' => \Lang::get('missing-persons::missing.default_meta_keywords')
+        ]);
+        
+        // End SEO optimization
+        
         return view('missing-persons::persons.index', [
             'persons' => $persons
         ]);
@@ -67,6 +84,9 @@ class PersonController extends Controller
     
     public function edit(Request $request)
     {
+        // Set title
+        Khead::setTitle(\Lang::get('missing-persons::missing.page_person_edit'));
+        
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
         
         $genders = \Slavic\MissingPersons\Model\Gender::getSelectOptions();
@@ -133,6 +153,9 @@ class PersonController extends Controller
     */
     public function create(Request $request)
     {
+        // Set title
+        Khead::setTitle(\Lang::get('missing-persons::missing.page_person_create'));
+        
         $person = new \Slavic\MissingPersons\Model\Person();
        
         // Get old post values
