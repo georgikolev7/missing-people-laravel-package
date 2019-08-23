@@ -9,6 +9,11 @@ use Lang;
 
 class MapController extends Controller
 {
+    /**
+     * Display a map with all not found persons.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $locations = \Slavic\MissingPersons\Model\LastPlace::getNotFound();
