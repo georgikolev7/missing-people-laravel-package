@@ -33,3 +33,6 @@
     Route::get('persons/photo/list', 'PersonController@list_photo')->name('persons.list_photo')->middleware('auth');
     Route::post('persons/photo/list/sort_order', 'PersonController@list_photo_sort')->name('persons.list_photo_sort')->middleware('auth');
     Route::resource('persons', 'PersonController');
+    
+    // Sitemap
+    Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.index');
