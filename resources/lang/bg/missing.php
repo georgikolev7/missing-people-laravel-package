@@ -10,6 +10,7 @@ return [
     'placeholder_region_name' => 'пример: Област Видин',
     'description' => 'Описание',
     'submit_person' => 'Публикуване на издирваното лице',
+    'save_edit_person' => 'Записване на промените',
     'missing_person' => 'Изчезнало лице',
     'wanted_person' => 'Издирвано лице',
     'year_short' => 'г.',
