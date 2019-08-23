@@ -93,7 +93,7 @@
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-1/4 px-3">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">Последно забелязан (дата)</label>
-                    <input data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
+                    <input data-date-format="yyyy-mm-dd" data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
                 </div>
             </div>
             
