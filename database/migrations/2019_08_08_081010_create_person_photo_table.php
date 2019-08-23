@@ -17,7 +17,6 @@ class CreatePersonPhotoTable extends Migration
             $table->string('type', 55);
             $table->string('file', 255);
             $table->string('thumb', 255);
-            $table->string('icon', 255);
             $table->timestamps();
         });
     }

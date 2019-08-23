@@ -35,11 +35,7 @@ class LastPlace extends Model
      */
     public static function getNotFound()
     {
-        $records = self::select(DB::raw(
-            DB::getTablePrefix().'person_last_place.*, ' . DB::getTablePrefix() . 'persons.name, '
-            . DB::getTablePrefix() . 'person_photo.icon'))
-        ->leftJoin('persons', 'persons.id', '=', 'person_last_place.person_id')
-        ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
+        $records = self::select(DB::raw(DB::getTablePrefix().'person_last_place.*, ' . DB::getTablePrefix() . 'persons.name'))->leftJoin('persons', 'persons.id', '=', 'person_last_place.person_id');
         $records = $records->where('persons.found', 0)->groupBy('person_last_place.person_id')->orderBy('persons.created_at', 'DESC')->get();
         return $records;
     }

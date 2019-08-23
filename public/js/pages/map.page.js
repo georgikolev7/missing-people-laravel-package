@@ -13,18 +13,17 @@ $(function() {
         subdomains: ['a', 'b', 'c']
     }).addTo(map);
     
+    var myIcon = L.icon({
+        iconUrl: 'js/leafletjs/images/marker-icon.png',
+        iconRetinaUrl: 'js/leafletjs/images/marker-icon-x2.png',
+        iconSize: [25, 41],
+        iconAnchor: [9, 21],
+        popupAnchor: [0, -14]
+    });
+    
     var markerClusters = L.markerClusterGroup();
     
     $.each(window.locations, function(idx, person) {
-        
-        var myIcon = L.icon({
-            iconUrl: 'storage/' + person.icon,
-            iconRetinaUrl: 'vendor/missing/js/leafletjs/images/marker-icon-x2.png',
-            iconSize: [35, 45],
-            iconAnchor: [9, 21],
-            popupAnchor: [0, -14]
-        });
-        
         var m = L.marker([person.lat, person.lng], {
                 icon: myIcon
             })
