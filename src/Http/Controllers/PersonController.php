@@ -12,6 +12,11 @@ use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         $persons = \Slavic\MissingPersons\Model\Person::getLatest();
@@ -36,6 +41,12 @@ class PersonController extends Controller
         ]);
     }
     
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function view(Request $request)
     {
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
@@ -64,6 +75,13 @@ class PersonController extends Controller
     }
     
     
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function delete(Request $request)
     {
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
@@ -82,6 +100,12 @@ class PersonController extends Controller
         return redirect()->action('\Slavic\MissingPersons\Http\Controllers\PersonController@index');
     }
     
+    
+    /**
+     * Show the form for editing a resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function edit(Request $request)
     {
         // Set title
