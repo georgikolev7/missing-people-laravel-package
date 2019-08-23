@@ -8,6 +8,7 @@
 
     {{ Khead::getTitle() }}
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="robots" content="@yield('robots', 'index, follow')">
     {{ Khead::getMeta('description') }}
     {{ Khead::getMeta('keywords') }}
     

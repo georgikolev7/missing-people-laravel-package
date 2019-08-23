@@ -1,5 +1,6 @@
-@extends('missing-persons::layouts.default')
+﻿@extends('missing-persons::layouts.default')
 
+@section('robots', 'noindex, nofollow')
 @section('page_css')
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/jquery.fileuploader.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/thumbnails-theme.css') }}" />
@@ -10,12 +11,11 @@
 
 @section('content')
     <div class="w-full md:max-w-2xl mx-auto flex bg-white border border-1 rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
-        <form action="{{ route('persons.update') }}" method="POST" id="edit-person-form" class="toggle-disabled">
-            @method('POST')
+        <form action="{{ route('persons.update', $person->hash) }}" method="POST" id="edit-person-form" class="toggle-disabled">
+            @method('PUT')
             {{ csrf_field() }}
             
             <div class="-mx-3 md:flex mb-6">
-		
                 <div class="md:w-3/4 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Име на лицето</label>
                     <input value="Георги Петков Колев" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
@@ -127,15 +127,15 @@
             
             <div class="-mx-3 md:flex mt-4 mb-3">
                 <div class="md:w-full md:flex px-3 mb-6 md:mb-0">
-                    <input type="checkbox" id="exact-address" name="exact_address" value="1" class="lcs_check" autocomplete="off" />
+                    <input type="checkbox" id="exact-address" name="exact_address" value="1" class="lcs_check" autocomplete="off" {{ ($person->last_place->exact_address == 1 ? "checked" : "") }}/>
                     <label class="ml-3 leading-loose md:w-3/4 block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">Искам да отбележа точното местоположение</label>
                 </div>
             </div>
             
-            <div id="map-wrapper" style="display:none;">
+            <div id="map-wrapper" {{ ($person->last_place->exact_address == 1 ? '' : 'style="display:none;"') }}>
                 <div class="-mx-3 md:flex mb-2">
                     <div class="md:w-full px-3 mb-6 md:mb-0 flex">
-                         <input placeholder="Въведете точен адрес" value="" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
+                         <input placeholder="Въведете точен адрес" value="{{ $person->last_place->address }}" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
                          <button type="button" id="button-search-address" class="appearance-none bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 md:w-1/4">Търсене</button>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
             
             <div class="-mx-3 md:flex mb-6">
                 <div class="md:w-full px-3 mb-6 md:mb-0">
-                    <input type="file" id="file" class="filename" name="filename[]" data-fileuploader-extensions="jpg, png">
+                    <input type="file" id="file" class="filename" name="filename[]" data-fileuploader-extensions="jpg, png" data-fileuploader-files='@json($person->photos)'>
                 </div>
             </div>
             

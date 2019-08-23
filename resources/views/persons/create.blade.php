@@ -1,11 +1,15 @@
-@extends('missing-persons::layouts.default')
+﻿@extends('missing-persons::layouts.default')
+
+@section('robots', 'noindex, nofollow')
+
 @section('page_css')
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/jquery.fileuploader.css') }}" />
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/thumbnails-theme.css') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.5.1/leaflet.css" />
     
     <link type="text/css" rel="stylesheet" href="{{ asset('vendor/missing/css/lc_switch.css') }}" />
-@stop
+@stop
+
 @section('content')
     <div class="w-full md:max-w-2xl mx-auto flex bg-white border border-1 rounded px-8 pt-6 pb-8 mb-4 flex flex-col my-2">
         <form action="{{ route('persons.store') }}" method="POST" id="create-person-form" class="toggle-disabled">

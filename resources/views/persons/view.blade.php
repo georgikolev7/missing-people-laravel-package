@@ -1,9 +1,5 @@
 @extends('missing-persons::layouts.default')
 
-@section('title', $person->name)
-@section('description', $person->description)
-@section('keywords', $person->description)
-
 @section('page_css')
     <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 @stop
