@@ -23,11 +23,15 @@ $(function() {
             iconAnchor: [9, 21],
             popupAnchor: [0, -14]
         });
+        
+        // Format person URL
+        var person_url = window.routes['persons.view'];
+        person_url = person_url.replace('{hash}', person.hash);
 
         var m = L.marker([person.lat, person.lng], {
                 icon: myIcon
             })
-            .bindPopup('<a href="' + person.url + '" target="_blank">' + person.name + '</a>');
+            .bindPopup('<a href="' + person_url + '" target="_blank">' + person.name + '</a>');
         markerClusters.addLayer(m);
     });
 
