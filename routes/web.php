@@ -1,7 +1,7 @@
-<?php
-    
+<?php
+    
     // Clear cache
-    Route::get('/clear-cache', function() {
+    Route::get('/clear-cache', function () {
         Artisan::call('cache:clear');
         return "Cache is cleared";
     });

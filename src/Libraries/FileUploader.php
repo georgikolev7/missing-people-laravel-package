@@ -22,7 +22,7 @@ class FileUploader
         'listInput' => true,
         'files' => array()
     );
-	
+    
     private $field = null;
     private $options = null;
 

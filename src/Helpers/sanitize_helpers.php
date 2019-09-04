@@ -23,16 +23,19 @@ if (!function_exists('snippet')) {
 }
 
 if (!function_exists('utf8_strlen')) {
-    function utf8_strlen($string) {
-    	return mb_strlen($string);
+    function utf8_strlen($string)
+    {
+        return mb_strlen($string);
     }
 }
 
 if (!function_exists('utf8_substr')) {
-    function utf8_substr($string, $offset, $length = NULL) {
-        if($length == NULL)
+    function utf8_substr($string, $offset, $length = null)
+    {
+        if ($length == null) {
             return mb_substr($string, $offset, utf8_strlen($string));
-        else
+        } else {
             return mb_substr($string, $offset, $length);
+        }
     }
 }
