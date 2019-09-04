@@ -1,4 +1,5 @@
-<?php
+﻿<?php
+
 namespace Slavic\MissingPersons\Model;
 
 use Illuminate\Database\Eloquent\Model;
@@ -6,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Settlement extends Model
 {
     protected static $_table = 'settlements';
+	
     /**
     * The attributes that are mass assignable.
     *
@@ -44,5 +46,4 @@ class Settlement extends Model
     {
         return self::where('region_id', '=', $region_id)->get();
     }
- 
 }

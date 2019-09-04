@@ -8,7 +8,7 @@ use DB;
 class EyesColor extends Model
 {
     protected $table = 'eyes_color';
-    
+     
     /**
     * Get all eyes colors.
     *
@@ -18,5 +18,4 @@ class EyesColor extends Model
     {
         return self::all();
     }
-  
 }
