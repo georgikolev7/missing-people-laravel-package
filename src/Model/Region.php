@@ -1,6 +1,6 @@
-﻿<?php
+﻿<?php
 
-namespace Slavic\MissingPersons\Model;
+namespace Slavic\MissingPersons\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
