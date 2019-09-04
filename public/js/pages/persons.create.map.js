@@ -21,32 +21,30 @@ $(function() {
         minZoom: 4,
         maxZoom: 18
     }).addTo(map);
-    
+
     var api_key = '97377b06ac014660977a7c06706ef1bf';
     var endpoint = 'http://api.opencagedata.com/geocode/v1/json?q=';
     var marker;
 
     $('#button-search-address').on('click', function(e) {
-        
+
         var encodedQuery = encodeURIComponent($('#map-address').val());
         var url = endpoint + encodedQuery + '&key=' + api_key;
-        
+
         $.get(url, function(data) {
-    		// Check your browser javascript console to look through the data
-    		if (data.total_results)
-            {
+            // Check your browser javascript console to look through the data
+            if (data.total_results) {
+
                 $('#exact-address-text').val(data.results[0].formatted);
-        		$('#exact-address-latitude').val(data.results[0].geometry.lat);
-        		$('#exact-address-longitude').val(data.results[0].geometry.lng);
-                
+                $('#exact-address-latitude').val(data.results[0].geometry.lat);
+                $('#exact-address-longitude').val(data.results[0].geometry.lng);
+
                 if (marker == null) {
                     marker = L.marker([data.results[0].geometry.lat, data.results[0].geometry.lng]).bindPopup(data.results[0].formatted).addTo(map).openPopup();
                 } else {
                     marker.setLatLng([data.results[0].geometry.lat, data.results[0].geometry.lng]).setPopupContent(data.results[0].formatted).openPopup();
                 }
             }
-
-    	});
+        });
     });
-
 });
