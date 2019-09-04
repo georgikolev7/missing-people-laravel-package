@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -29,7 +29,7 @@ class CreatePersonsTable extends Migration
             $table->unique('hash');
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('persons');
