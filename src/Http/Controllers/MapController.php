@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 namespace Slavic\MissingPersons\Http\Controllers;
 
@@ -37,5 +37,4 @@ class MapController extends Controller
             'locations' => $locations
         ]);
     }
-
 }

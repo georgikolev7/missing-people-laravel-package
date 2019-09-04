@@ -271,7 +271,7 @@ class PersonController extends Controller
     public function update(Request $request)
     {
         // validate and save posted data
-        if ($request->isMethod('post')) {
+        if ($request->isMethod('put')) {
             $validatedData = $request->validate([
                 'name' => 'required|max:255',
                 'age' => 'required',

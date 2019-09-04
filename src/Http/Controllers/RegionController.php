@@ -2,21 +2,19 @@
 
 namespace Slavic\MissingPersons\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class RegionController extends Controller
-{
-    
+{
     public function index()
     {
-        $list = \Slavic\MissingPersons\Model\Region::getAll();
-        
-        return view('missing-persons::regions.index', [
-            'list' => $list
+        $list = \Slavic\MissingPersons\Model\Region::getAll();
+        
+        return view('missing-persons::regions.index', [
+            'list' => $list
         ]);
     }
-    
     
     /**
     * Show the form for creating a new resource.
@@ -42,10 +40,8 @@ class RegionController extends Controller
         return view('missing-persons::regions.create', [
            'region' => $region
        ]);
-    }
-    
-    
-    
+    }
+
     /**
      * Store a newly created resource in storage.
      *
