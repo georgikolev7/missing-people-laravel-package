@@ -1,5 +1,4 @@
 ﻿<?php
-
 namespace Slavic\MissingPersons\Http\Controllers;
 
 use App\Http\Controllers\Controller;
