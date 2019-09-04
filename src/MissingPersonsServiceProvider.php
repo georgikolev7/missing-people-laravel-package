@@ -23,7 +23,7 @@ class MissingPersonsServiceProvider extends ServiceProvider
     {
         if (!defined('MP_PATH')) {
             define('MP_PATH', realpath(__DIR__.'/../'));
-        } 
+        }
     }
     
     
