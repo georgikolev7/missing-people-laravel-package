@@ -1,5 +1,5 @@
 ﻿@extends('missing-persons::layouts.default')
-@section('robots', 'noindex, nofollow')
+@section('robots', 'noindex, nofollow')
 @section('page_css')
 @stop
 @section('content')
@@ -27,18 +27,18 @@
               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="grid-password" type="password" placeholder="******************">
               <p class="text-grey-dark text-xs italic">Make it as long and as crazy as you'd like</p>
           </div>
-      </div>	  
+      </div>
       <div class="-mx-3 md:flex mb-2">
           <div class="md:w-1/2 px-3 mb-6 md:mb-0">
               <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-city">
                   City
               </label>
               <input class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="grid-city" type="text" placeholder="Albuquerque">
-          </div>
+          </div>		  
           <div class="md:w-1/2 px-3">
               <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">
                   State
-              </label>
+              </label>
               <div class="relative">
                   <select class="block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                       <option>New Mexico</option>

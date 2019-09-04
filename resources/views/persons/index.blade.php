@@ -1,5 +1,4 @@
-﻿@extends('missing-persons::layouts.default')
-
+﻿@extends('missing-persons::layouts.default')
 @section('title', __('missing-persons::missing.missing_persons'))
 @section('description', __('missing-persons::missing.default_meta_description'))
 @section('keywords', __('missing-persons::missing.default_meta_keywords'))
@@ -17,7 +16,7 @@
                         @else
                             <img src="no-photo.png" alt="{{ $person->name }}" class="w-full" />
                         @endif
-                    </a>
+                    </a>					
                     <div class="py-3 px-3 border-gray-400 border">
                         <div class="font-bold text-base mb-2">{{ $person->name }}</div>
                         <p class="text-sm text-gray-600 flex items-center">
@@ -25,11 +24,10 @@
                                 {{ $person['last_place']->address }}
                             @endif
                             @if ($person['region'])
-                            {{ $person['region']->name }}
+								{{ $person['region']->name }}
                             @endif
                             @if ($person['settlement'])
                                 {{ $person['settlement']->name }}
-                            @else
                             @endif
                         </p>
                     </div>
