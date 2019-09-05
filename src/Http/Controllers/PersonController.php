@@ -292,13 +292,19 @@ class PersonController extends Controller
                 'hash' => $request->get('hash'),
             ], [
                 'name' => $request->get('name'),
+                'last_seen' => $request->get('last_seen_date')
+            ]);
+            
+            // Update person profile
+            $person_profile = \Slavic\MissingPersons\Model\PersonProfile::updateOrCreate([
+                'person_id' => $person->id,
+            ], [
                 'age' => $request->get('age'),
                 'height' => $request->get('height'),
                 'year_of_birth' => (date('Y') - $request->get('age')),
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
-                'last_seen' => $request->get('last_seen_date'),
                 'region_id' => $request->get('region_id'),
                 'settlement_id' => $request->get('settlement_id')
             ]);
@@ -326,9 +332,8 @@ class PersonController extends Controller
      */
     public function set_found(Request $request)
     {
-        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
+        $person = \Slavic\MissingPersons\Model\PersonFound::getByHash($request->hash);
         
-        $person->found = 1;
         $person->date_found = date('Y-m-d');
         $person->save();
         
