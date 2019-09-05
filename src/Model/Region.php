@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Slavic\MissingPersons\Model;
 
@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Region extends Model
 {
-    protected static $_table = 'regions';	
+    protected static $_table = 'regions';    
     /**
     * The attributes that are mass assignable.
     *
@@ -14,7 +14,7 @@ class Region extends Model
     */
     protected $fillable = [
         'place_id', 'code', 'ekatte', 'name', 'lat', 'lng', 'people', 'settlements', 'type'
-    ];	
+    ];    
     /**
      * The rules for validation.
      *
@@ -27,11 +27,11 @@ class Region extends Model
         'lat' => 'required',
         'lng' => 'required',
         'type' => 'required'
-    );
+    );
     public function settlements()
     {
         return $this->hasMany('Slavic\MissingPersons\Model\Settlement');
-    }
+    }
     /**
      * Get all regions.
      *

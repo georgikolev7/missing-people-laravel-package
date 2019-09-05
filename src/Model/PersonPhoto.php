@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Slavic\MissingPersons\Model;
 
@@ -8,7 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 class PersonPhoto extends Model
 {
     protected $table = 'person_photo';
-	
+    
     /**
      * Associations.
      *
@@ -17,7 +17,8 @@ class PersonPhoto extends Model
     public function person()
     {
         return $this->belongsTo('Slavic\MissingPersons\Model\Person', 'person_id');
-    }
+    }
+    
     /**
      * Get dir path for uploading pictures
      *
@@ -30,12 +31,13 @@ class PersonPhoto extends Model
         } else {
             return '';
         }
-    }
+    }
+    
     public function store($id, $request)
-    {
+    {
         // store
     }
-	
+    
     /**
      * Create thumbnails of uploaded pictures
      *
@@ -43,19 +45,18 @@ class PersonPhoto extends Model
      */
     public static function createThumbnails($id, $files)
     {
-        foreach ($files as $key => $file)
-        {
+        foreach ($files as $key => $file) {
             $upload_path = $file['name'];
             $ext = pathinfo($upload_path, PATHINFO_EXTENSION);
-            $thumbnail_name = str_replace('.' . $ext, '_thumb.' . $ext, $file['file']);
-            $icon_name = str_replace('.' . $ext, '_icon.' . $ext, $file['file']);
-			$img = \Image::make($file['file']);
+            $thumbnail_name = str_replace('.' . $ext, '_thumb.' . $ext, $file['file']);
+            $icon_name = str_replace('.' . $ext, '_icon.' . $ext, $file['file']);
+            $img = \Image::make($file['file']);
             $img->fit(778, 1000)->save($file['file']);
-            $img->fit(350, 450)->save($thumbnail_name);
+            $img->fit(350, 450)->save($thumbnail_name);
             // Icon size for markers on the map
             $img->fit(35, 45)->save($icon_name);
             
-            $files[$key]['thumb'] = $thumbnail_name;
+            $files[$key]['thumb'] = $thumbnail_name;
             $photo = new self();            
             $photo->name = $file['name'];
             $photo->file = str_replace(storage_path('app/public/'), '', $file['file']);
