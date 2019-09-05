@@ -17,20 +17,20 @@
         {{ csrf_field() }}
         <div class="-mx-3 md:flex mb-6">
             <div class="md:w-3/4 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">Име на лицето</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">@lang('missing-persons::missing.person_name')</label>
                 <input value="" data-validation="length" data-validation-length="min5" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-red rounded py-3 px-4 mb-3" name="name" id="person-full-name" type="text" placeholder="Трите имена на лицето">
                 <p class="text-red text-xs italic">
                     @lang('missing-persons::missing.please_fill_person_full_name')
                 </p>
             </div>
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">Възраст</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">@lang('missing-persons::missing.age')</label>
                 <input value="" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-2">
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Пол</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">@lang('missing-persons::missing.gender')</label>
                 <div class="relative">
                     <select name="sex" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($genders as $gender)
@@ -45,7 +45,7 @@
                 </div>
             </div>			
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Цвят на очите</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">@lang('missing-persons::missing.eyes_color')</label>
                 <div class="relative">
                     <select name="eyes_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($eyes_colors as $eye_color)
@@ -60,7 +60,7 @@
                 </div>
             </div>			
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Цвят на косата</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">@lang('missing-persons::missing.hair_color')</label>
                 <div class="relative">
                     <select name="hair_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($hair_colors as $hair_color)
@@ -75,30 +75,30 @@
                 </div>
             </div>			
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">Ръст</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">@lang('missing-persons::missing.height')</label>
                 <input value="" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-6">
             <div class="md:w-full px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="description">Описание</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="description">@lang('missing-persons::missing.description')</label>
                 <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6"></textarea>
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-6">
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">Последно забелязан (дата)</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">@lang('missing-persons::missing.last_seen_on')</label>
                 <input data-date-format="yyyy-mm-dd" data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-2">
             <div class="md:w-2/4 px-3">
-                <h2 class="block uppercase tracking-wide text-grey-darker text-md font-bold mb-2">Последно местоположение</h2>
+                <h2 class="block uppercase tracking-wide text-grey-darker text-md font-bold mb-2">@lang('missing-persons::missing.last_place')</h2>
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-2">
             <div class="md:w-2/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-region">Област</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-region">@lang('missing-persons::missing.region')</label>
                 <div class="relative">
                     <select name="region_id" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-region">
                         @foreach ($regions as $region)
@@ -113,7 +113,7 @@
                 </div>
             </div>			
             <div class="md:w-2/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-settlement">Населено място</label>
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-settlement">@lang('missing-persons::missing.settlement')</label>
                 <div class="relative">
                     <select name="settlement_id" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-settlement"></select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -127,7 +127,7 @@
         <div class="-mx-3 md:flex mt-4 mb-3">
             <div class="md:w-full md:flex px-3 mb-6 md:mb-0">
                 <input type="checkbox" id="exact-address" name="exact_address" value="1" class="lcs_check" autocomplete="off" />
-                <label class="ml-3 leading-loose md:w-3/4 block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">Искам да отбележа точното местоположение</label>
+                <label class="ml-3 leading-loose md:w-3/4 block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="exact-address">@lang('missing-persons::missing.select_exact_address')</label>
             </div>
         </div>
 
@@ -135,7 +135,7 @@
             <div class="-mx-3 md:flex mb-2">
                 <div class="md:w-full px-3 mb-6 md:mb-0 flex">
                     <input placeholder="Въведете точен адрес" value="" class="flex-1 mr-2 appearance-none block w-full bg-grey-lighter text-grey-darker border border-red md:w-3/4 py-3 px-4" id="map-address" name="map_address" type="text">
-                    <button type="button" id="button-search-address" class="appearance-none bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 md:w-1/4">Търсене</button>
+                    <button type="button" id="button-search-address" class="appearance-none bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 md:w-1/4">@lang('missing-persons::missing.search')</button>
                 </div>
             </div>			
             <div class="-mx-3 md:flex mb-6">
