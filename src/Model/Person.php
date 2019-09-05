@@ -56,6 +56,11 @@ class Person extends Model
         return $this->hasOne('Slavic\MissingPersons\Model\PersonProfile', 'person_id');
     }
     
+    public function found()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\PersonFound', 'person_id');
+    }
+    
     public function eyes_color()
     {
         return $this->hasOne('Slavic\MissingPersons\Model\EyesColor', 'eyes_color');
