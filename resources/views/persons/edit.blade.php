@@ -94,7 +94,7 @@
         <div class="-mx-3 md:flex mb-6">
             <div class="md:w-1/4 px-3">
                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-last-seen-date">@lang('missing-persons::missing.last_seen_on')</label>
-                <input data-date-format="yyyy-mm-dd" data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
+                <input value="{{ $person->last_seen }}" data-date-format="yyyy-mm-dd" data-position="right top" class="datepicker-here appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-last-seen-date" name="last_seen_date" type="text">
             </div>
         </div>
 
@@ -110,7 +110,7 @@
                 <div class="relative">
                     <select name="region_id" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-region">
                         @foreach ($regions as $region)
-                        <option data-lat="{{ $region->lat }}" data-lng="{{ $region->lng }}" value="{{ $region->id }}" {{ ($person->region_id == $region->id ? "selected":"") }}>{{ $region->name }}</option>
+                        <option data-lat="{{ $region->lat }}" data-lng="{{ $region->lng }}" value="{{ $region->id }}" {{ ($person->profile->region_id == $region->id ? "selected":"") }}>{{ $region->name }}</option>
                         @endforeach
                     </select>
 
@@ -126,7 +126,7 @@
                 <div class="relative">
                     <select name="settlement_id" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-settlement">
                         @foreach ($settlements as $settlement)
-                        <option data-lat="{{ $settlement->lat }}" data-lng="{{ $settlement->lng }}" value="{{ $settlement->id }}" {{ ($person->settlement_id == $settlement->id ? "selected":"") }}>{{ $settlement->name }}</option>
+                        <option data-lat="{{ $settlement->lat }}" data-lng="{{ $settlement->lng }}" value="{{ $settlement->id }}" {{ ($person->profile->settlement_id == $settlement->id ? "selected":"") }}>{{ $settlement->name }}</option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
