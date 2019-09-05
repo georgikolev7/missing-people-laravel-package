@@ -25,6 +25,10 @@
     Route::get('persons', 'PersonController@index')->name('persons.index');
     Route::get('persons/view/{hash}', 'PersonController@view')->name('persons.view');
     Route::get('persons/create', 'PersonController@create')->name('persons.create');
+    Route::post('persons/store', 'PersonController@store')->name('persons.store');
+    
+    Route::post('persons/photo/store', 'PersonController@store_photo')->name('persons.store_photo');
+    Route::post('persons/photo/list/sort_order', 'PersonController@list_photo_sort')->name('persons.list_photo_sort');
     
     // Persons restricted pages
     Route::middleware(['auth'])->group(function () {
@@ -34,10 +38,7 @@
         Route::post('persons/set_found/{hash}', 'PersonController@set_found')->name('persons.set_found');
         Route::post('persons/set_found_dead/{hash}', 'PersonController@set_found_dead')->name('persons.set_found_dead');
         
-        Route::post('persons/store', 'PersonController@store')->name('persons.store');
         Route::post('persons/update/{hash}', 'PersonController@update')->name('persons.update');
-        Route::post('persons/photo/store', 'PersonController@store_photo')->name('persons.store_photo');
-        Route::post('persons/photo/list/sort_order', 'PersonController@list_photo_sort')->name('persons.list_photo_sort');
     });
     
     Route::resource('persons', 'PersonController');
