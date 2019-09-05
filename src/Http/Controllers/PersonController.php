@@ -120,7 +120,7 @@ class PersonController extends Controller
         $settlements = [];
         
         // Settlements
-        $settlements = \Slavic\MissingPersons\Model\Settlement::getByRegion($person->region_id);
+        $settlements = \Slavic\MissingPersons\Model\Settlement::getByRegion($person->profile->region_id);
        
         return view('missing-persons::persons.edit', [
            'person' => $person,
