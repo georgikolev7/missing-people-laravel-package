@@ -26,7 +26,7 @@
 
             <div class="md:w-1/4 px-3">
                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">@lang('missing-persons::missing.age')</label>
-                <input value="{{ $person->age }}" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
+                <input value="{{ $person->profile->age }}" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
             </div>
         </div>
 
@@ -36,7 +36,7 @@
                 <div class="relative">
                     <select name="sex" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($genders as $gender)
-                        <option value="{{ $gender['id'] }}" {{ ($person->sex == $gender['id'] ? "selected":"") }}>{{ $gender['text'] }}</option>
+                        <option value="{{ $gender['id'] }}" {{ ($person->profile->sex == $gender['id'] ? "selected":"") }}>{{ $gender['text'] }}</option>
                         @endforeach
                     </select>
 
@@ -52,7 +52,7 @@
                 <div class="relative">
                     <select name="eyes_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($eyes_colors as $eye_color)
-                        <option value="{{ $eye_color->id }}" {{ ($person->eyes_color == $eye_color->id ? "selected":"") }}>{{ $eye_color->name }}</option>
+                        <option value="{{ $eye_color->id }}" {{ ($person->profile->eyes_color == $eye_color->id ? "selected":"") }}>{{ $eye_color->name }}</option>
                         @endforeach
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -67,7 +67,7 @@
                 <div class="relative">
                     <select name="hair_color" class="block appearance-none w-full leading-tight bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded" id="grid-state">
                         @foreach ($hair_colors as $hair_color)
-                        <option value="{{ $hair_color->id }}" {{ ($person->hair_color == $hair_color->id ? "selected":"") }}>{{ $hair_color->name }}</option>
+                        <option value="{{ $hair_color->id }}" {{ ($person->profile->hair_color == $hair_color->id ? "selected":"") }}>{{ $hair_color->name }}</option>
                         @endforeach
                     </select>
 
@@ -80,14 +80,14 @@
 
             <div class="md:w-1/4 px-3">
                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-state">@lang('missing-persons::missing.height')</label>
-                <input value="{{ $person->height }}" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
+                <input value="{{ $person->profile->height }}" data-validation="number" data-validation-allowing="range[1;250]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" id="person-height" name="height" type="text" placeholder="">
             </div>
         </div>
 
         <div class="-mx-3 md:flex mb-6">
             <div class="md:w-full px-3 mb-6 md:mb-0">
                 <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="person-full-name">@lang('missing-persons::missing.description')</label>
-                <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">{{ $person->description }}</textarea>
+                <textarea class="w-full border p-4 border-1" placeholder="" name="description" rows="6">{{ $person->profile->description }}</textarea>
             </div>
         </div>
 

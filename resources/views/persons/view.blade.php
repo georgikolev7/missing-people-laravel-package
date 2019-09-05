@@ -6,6 +6,9 @@
     <div class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
             <div class="w-full overflow-hidden xl:my-1 xl:px-1 xl:w-1/2">
+                @if ($person->found)
+                    <span class="inline-block bg-teal-200 text-teal-800 text-xs px-2 rounded-full uppercase font-semibold tracking-wide">@lang('missing-persons::missing.person_is_found')</span>
+                @endif
                 <div class="fotorama" data-width="100%" data-height="450" data-nav="thumbs" data-fit="cover" data-allowfullscreen="true">
                     @foreach ($person->photos as $photo)
                         <a href="{{ url('storage/' . $photo->file) }}"><img src="{{ url('storage/' . $photo->thumb) }}"></a>
@@ -21,15 +24,21 @@
                 @endauth
                 <ul class="list-none sm:list-disc md:list-decimal lg:list-disc xl:list-none">
                     <li><strong>@lang('missing-persons::missing.person_name'):</strong> {{ $person->name }}</li>
-                    <li><strong>@lang('missing-persons::missing.age'):</strong> {{ $person->age }} @lang('missing-persons::missing.year_short')</li>
-                    <li><strong>@lang('missing-persons::missing.height'):</strong> {{ $person->height }} @lang('missing-persons::missing.cm')</li>
-                    <li><strong>@lang('missing-persons::missing.gender'):</strong> {{ $person->sex }}</li>
-                    <li><strong>@lang('missing-persons::missing.year_of_birth'):</strong> {{ $person->year_of_birth }} @lang('missing-persons::missing.year_short')</li>
+                    <li><strong>@lang('missing-persons::missing.age'):</strong> {{ $person->profile->age }} @lang('missing-persons::missing.year_short')</li>
+                    <li><strong>@lang('missing-persons::missing.height'):</strong> {{ $person->profile->height }} @lang('missing-persons::missing.cm')</li>
+                    <li><strong>@lang('missing-persons::missing.gender'):</strong>
+                        @if ($person->profile->gender == 'male')
+                            @lang('missing-persons.missing.gender_male')
+                        @else
+                            @lang('missing-persons.missing.gender_female')
+                        @endif
+                        </li>
+                    <li><strong>@lang('missing-persons::missing.year_of_birth'):</strong> {{ $person->profile->year_of_birth }} @lang('missing-persons::missing.year_short')</li>
                     <li><strong>@lang('missing-persons::missing.last_seen_on'):</strong> {{ $person->last_seen }}</li>
                 </ul>
                 <div class="person-content">
                     <h6>@lang('missing-persons::missing.description'):</h6>
-                    <div class="">{{ $person->description }}</div>
+                    <div class="">{{ $person->profile->description }}</div>
                 </div>
             </div>
         </div>
