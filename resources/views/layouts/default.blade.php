@@ -50,5 +50,6 @@
     <!-- Scripts -->
     @yield('page_js')
     <script src="{{ mix('js/app.js') }}"></script>
+	<script src="{{ asset('vendor/missing/js/global.js') }}"></script>
 </body>
 </html>
