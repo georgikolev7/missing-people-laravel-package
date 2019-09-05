@@ -17,6 +17,7 @@
                     <a href="{{ url('persons/edit/' . $person->hash) }}">@lang('missing-persons::missing.edit')</a>
                     <a href="{{ url('persons/delete/' . $person->hash) }}">@lang('missing-persons::missing.delete')</a>
                     <button id="set-as-found" data-href="{{ url('persons/set_found/' . $person->hash) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">@lang('missing-persons::missing.set_found')</button>
+                    <button id="set-as-found-dead" data-href="{{ url('persons/set_found_dead/' . $person->hash) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">@lang('missing-persons::missing.set_found_dead')</button>
                 @endauth
                 <ul class="list-none sm:list-disc md:list-decimal lg:list-disc xl:list-none">
                     <li><strong>@lang('missing-persons::missing.person_name'):</strong> {{ $person->name }}</li>

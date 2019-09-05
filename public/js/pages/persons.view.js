@@ -1,6 +1,6 @@
 $(function() {
 
-    $('button#set-as-found').on('click', function(e) {
+    $('button#set-as-found, button#set-as-found-dead').on('click', function(e) {
         e.preventDefault();
 
         var data = {

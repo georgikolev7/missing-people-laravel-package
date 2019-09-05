@@ -15,7 +15,7 @@ class PersonFound extends Model
     * @var array
     */
     protected $fillable = [
-        'person_id', 'date_found'
+        'person_id', 'date_found', 'dead'
     ];
     
     /**

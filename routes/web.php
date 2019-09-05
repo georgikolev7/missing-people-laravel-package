@@ -32,6 +32,7 @@
         Route::get('persons/delete/{hash}', 'PersonController@delete')->name('persons.delete');
         Route::get('persons/photo/list', 'PersonController@list_photo')->name('persons.list_photo');
         Route::post('persons/set_found/{hash}', 'PersonController@set_found')->name('persons.set_found');
+        Route::post('persons/set_found_dead/{hash}', 'PersonController@set_found_dead')->name('persons.set_found_dead');
         
         Route::post('persons/store', 'PersonController@store')->name('persons.store');
         Route::post('persons/update/{hash}', 'PersonController@update')->name('persons.update');
