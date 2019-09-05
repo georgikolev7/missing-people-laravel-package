@@ -14,11 +14,8 @@ class Person extends Model
     * @var array
     */
     protected $fillable = [
-        'hash', 'type', 'name', 'age',
-        'year_of_birth', 'sex', 'height',
-        'last_seen', 'eyes_color', 'hair_color',
-        'description', 'region_id', 'settlement_id',
-        'found', 'date_found', 'lat', 'lng'
+        'hash', 'type', 'name', 'last_seen',
+        'found', 'date_found'
     ];
     /**
      * The rules for validation.
@@ -26,12 +23,7 @@ class Person extends Model
      * @var array
      */
     public static $rules = array(
-        'code' => 'required',
-        'region_id' => 'required',
-        'ekatte' => 'required',
-        'name' => 'required',
-        'lat' => 'required',
-        'lng' => 'required'
+        'name' => 'required'
     );
     
     /**
@@ -57,6 +49,11 @@ class Person extends Model
     public function last_place()
     {
         return $this->hasOne('Slavic\MissingPersons\Model\LastPlace', 'person_id');
+    }
+    
+    public function profile()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\PersonProfile', 'person_id');
     }
     
     public function eyes_color()

@@ -236,13 +236,19 @@ class PersonController extends Controller
             $person = \Slavic\MissingPersons\Model\Person::updateOrCreate([
                 'hash' => $hash,
                 'name' => $request->get('name'),
+                'last_seen' => $request->get('last_seen_date')
+            ]);
+            
+            // Update person profile
+            $person_profile = \Slavic\MissingPersons\Model\PersonProfile::updateOrCreate([
+                'person_id' => $person->id,
+            ], [
                 'age' => $request->get('age'),
                 'height' => $request->get('height'),
                 'year_of_birth' => (date('Y') - $request->get('age')),
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
-                'last_seen' => $request->get('last_seen_date'),
                 'region_id' => $request->get('region_id'),
                 'settlement_id' => $request->get('settlement_id')
             ]);
