@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 namespace Slavic\MissingPersons\Model;
 
@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Settlement extends Model
 {
     protected static $_table = 'settlements';
-	
+    
     /**
     * The attributes that are mass assignable.
     *
