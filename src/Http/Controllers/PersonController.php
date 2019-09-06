@@ -263,6 +263,14 @@ class PersonController extends Controller
                 'exact_address' => $request->get('exact_address')
             ]);
             
+            // Update last known place
+            $log = \Slavic\MissingPersons\Model\Logs::updateOrCreate([
+                'person_id' => $person->id,
+            ], [
+                'ip_address' => $request()->ip(),
+                'user_agent' => $request->header('User-Agent')
+            ]);
+            
             return \Response::json($person, 200);
         }
     }
