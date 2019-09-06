@@ -365,4 +365,16 @@ class PersonController extends Controller
         
         return \Response::json($person, 200);
     }
+    
+    /**
+     * Sort order of person photos
+     * 
+     * @param \Illuminate\Http\Request $request
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function list_photo_sort(Request $request)
+    {
+        return \Response::json([], 200);
+    }
 }
