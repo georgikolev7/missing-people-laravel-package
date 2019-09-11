@@ -8,7 +8,7 @@
     <div class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
         @forelse ($persons as $num => $person)
-            <div class="w-full overflow-hidden xl:my-2 xl:px-2 xl:w-1/5">
+            <div class="my-1 px-1 w-1/2 overflow-hidden xl:my-2 xl:px-2 xl:w-1/5">
                 <div class="max-w-sm overflow-hidden">
                     <a href="persons/view/{{ $person->hash }}">
                         @if ($person->thumb)
