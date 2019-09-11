@@ -78,8 +78,14 @@ class Person extends Model
      */
     public static function getLatest($number = 16)
     {
-        $records = self::select(DB::raw(DB::getTablePrefix().'persons.*, ' . DB::getTablePrefix() . 'person_photo.thumb'))->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
-        $records = $records->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
+        $records = self::select(DB::raw(
+            DB::getTablePrefix().'persons.*, ' .
+            DB::getTablePrefix() . 'person_photo.thumb, ' .
+            DB::getTablePrefix() . 'person_found.* '
+            ))
+            ->leftJoin('person_found', 'persons.id', '=', 'person_found.person_id')
+            ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
+        $records = $records->whereNull('person_found.person_id')->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
         return $records->take($number);
     }
     
