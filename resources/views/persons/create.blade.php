@@ -24,8 +24,8 @@
                 </p>
             </div>
             <div class="md:w-1/4 px-3">
-                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-last-name">@lang('missing-persons::missing.age')</label>
-                <input value="" data-validation="number" data-validation-allowing="range[1;100]" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="age" id="person-age" type="text" placeholder="">
+                <label class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2" for="grid-year-of-birth">@lang('missing-persons::missing.year_of_birth')</label>
+                <input value="" data-validation="number" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4" name="year_of_birth" id="year-of-birth" type="text" placeholder="">
             </div>
         </div>		
         <div class="-mx-3 md:flex mb-2">

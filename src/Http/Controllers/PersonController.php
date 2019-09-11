@@ -225,7 +225,7 @@ class PersonController extends Controller
         if ($request->isMethod('post')) {
             $validatedData = $request->validate([
                 'name' => 'required|max:255',
-                'age' => 'required',
+                'year_of_birth' => 'required',
                 'eyes_color' => 'required',
                 'hair_color' => 'required',
                 'height' => 'required',
@@ -243,9 +243,9 @@ class PersonController extends Controller
             $person_profile = \Slavic\MissingPersons\Model\PersonProfile::updateOrCreate([
                 'person_id' => $person->id,
             ], [
-                'age' => $request->get('age'),
                 'height' => $request->get('height'),
-                'year_of_birth' => (date('Y') - $request->get('age')),
+                'age' => (date('Y') - $request->get('year_of_birth')),
+                'year_of_birth' => $request->get('year_of_birth'),
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
@@ -288,7 +288,7 @@ class PersonController extends Controller
         if ($request->isMethod('put')) {
             $validatedData = $request->validate([
                 'name' => 'required|max:255',
-                'age' => 'required',
+                'year_of_birth' => 'required',
                 'eyes_color' => 'required',
                 'hair_color' => 'required',
                 'height' => 'required',
@@ -307,9 +307,9 @@ class PersonController extends Controller
             $person_profile = \Slavic\MissingPersons\Model\PersonProfile::updateOrCreate([
                 'person_id' => $person->id,
             ], [
-                'age' => $request->get('age'),
                 'height' => $request->get('height'),
-                'year_of_birth' => (date('Y') - $request->get('age')),
+                'age' => (date('Y') - $request->get('year_of_birth')),
+                'year_of_birth' => $request->get('year_of_birth'),
                 'eyes_color' => $request->get('eyes_color'),
                 'hair_color' => $request->get('hair_color'),
                 'description' => $request->get('description'),
