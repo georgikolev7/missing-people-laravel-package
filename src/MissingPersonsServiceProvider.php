@@ -11,6 +11,8 @@ class MissingPersonsServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        $this->requireHelpers();
+        
         $this->loadMigrationsFrom(dirname(__DIR__, 1) . '/database/migrations/');
         $this->registerRoutes();
         $this->registerResources();
@@ -21,8 +23,15 @@ class MissingPersonsServiceProvider extends ServiceProvider
     {
         if (!defined('MP_PATH')) {
             define('MP_PATH', realpath(__DIR__.'/../'));
-        } 
+        }
     }
+    
+    
+    private function requireHelpers()
+    {
+        require_once __DIR__ . '/Helpers/sanitize_helpers.php';
+    }
+    
     
     /**
      * Register the MissingPersons routes.
@@ -47,6 +56,12 @@ class MissingPersonsServiceProvider extends ServiceProvider
     protected function registerResources()
     {
         $this->loadViewsFrom(dirname(__DIR__, 1) . '/resources/views', 'missing-persons');
+        
+        // Load translations
+        $this->loadTranslationsFrom(dirname(__DIR__, 1) . '/resources/lang', 'missing-persons');
+        $this->publishes([
+            dirname(__DIR__, 1) . '/resources/lang' => resource_path('lang/vendor/missing-persons'),
+        ]);
     }
     
     

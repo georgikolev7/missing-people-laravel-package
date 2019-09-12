@@ -18,5 +18,4 @@ class HairColor extends Model
     {
         return self::all();
     }
-  
 }

@@ -9,16 +9,18 @@ class CreateColorsTables extends Migration
     public function up()
     {
         Schema::create('eyes_color', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name', 55);
+            $table->engine = 'InnoDB';
         });
         
         Schema::create('hair_color', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->string('name', 55);
+            $table->engine = 'InnoDB';
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('eyes_color');

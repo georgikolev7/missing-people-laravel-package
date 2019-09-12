@@ -1,4 +1,4 @@
-<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -20,9 +20,10 @@ class CreateRegionsTable extends Migration
             $table->integer('settlements')->unsigned();
             $table->enum('type', ['area', 'city']);
             $table->integer('sort_order')->unsigned();
+            $table->engine = 'InnoDB';
         });
     }
-
+    
     public function down()
     {
         Schema::dropIfExists('regions');

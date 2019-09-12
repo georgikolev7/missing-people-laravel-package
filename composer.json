@@ -1,6 +1,6 @@
 {
     "name": "slavic/missing-persons",
-    "description": "Laravel package for publishing missing persons",
+    "description": "Laravel package for publishing missing/wanted persons",
     "license": "GNU GPL v3",
     "authors": [
         {
@@ -28,5 +28,7 @@
     "minimum-stability": "dev",
     "require": {
         "laravel-frontend-presets/tailwindcss": "^1.0",
+        "intervention/image": "^2.5",
+        "code4mk/lara-head": "dev-master"
     }
 }

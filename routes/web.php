@@ -1,13 +1,16 @@
-<?php
-    
+<?php
+    
     // Clear cache
-    Route::get('/clear-cache', function() {
+    Route::get('/clear-cache', function () {
         Artisan::call('cache:clear');
         return "Cache is cleared";
     });
     
     // Index page
     Route::get('/', 'PersonController@index')->name('persons.index');
+    
+    // Map page
+    Route::get('/map', 'MapController@index')->name('map.index');
     
     // Regions
     Route::get('regions', 'RegionController@index')->name('regions.index');
@@ -20,12 +23,25 @@
     
     // Persons
     Route::get('persons', 'PersonController@index')->name('persons.index');
-    Route::get('persons/edit/{hash}', 'PersonController@edit')->name('persons.edit');
     Route::get('persons/view/{hash}', 'PersonController@view')->name('persons.view');
-    Route::post('persons/store', 'PersonController@store')->name('persons.store');
     Route::get('persons/create', 'PersonController@create')->name('persons.create');
-    Route::get('persons/delete', 'PersonController@delete')->name('persons.delete');
+    Route::post('persons/store', 'PersonController@store')->name('persons.store');
+    
     Route::post('persons/photo/store', 'PersonController@store_photo')->name('persons.store_photo');
-    Route::get('persons/photo/list', 'PersonController@list_photo')->name('persons.list_photo');
     Route::post('persons/photo/list/sort_order', 'PersonController@list_photo_sort')->name('persons.list_photo_sort');
+    
+    // Persons restricted pages
+    Route::middleware(['auth'])->group(function () {
+        Route::get('persons/edit/{hash}', 'PersonController@edit')->name('persons.edit');
+        Route::get('persons/delete/{hash}', 'PersonController@delete')->name('persons.delete');
+        Route::get('persons/photo/list', 'PersonController@list_photo')->name('persons.list_photo');
+        Route::post('persons/set_found/{hash}', 'PersonController@set_found')->name('persons.set_found');
+        Route::post('persons/set_found_dead/{hash}', 'PersonController@set_found_dead')->name('persons.set_found_dead');
+        
+        Route::post('persons/update/{hash}', 'PersonController@update')->name('persons.update');
+    });
+    
     Route::resource('persons', 'PersonController');
+    
+    // Sitemap
+    Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap.index');

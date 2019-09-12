@@ -14,11 +14,8 @@ class Person extends Model
     * @var array
     */
     protected $fillable = [
-        'hash', 'type', 'name', 'age',
-        'year_of_birth', 'sex', 'height',
-        'last_seen', 'eyes_color', 'hair_color',
-        'description', 'region_id', 'settlement_id',
-        'found', 'date_found', 'lat', 'lng'
+        'hash', 'type', 'name', 'last_seen',
+        'found', 'date_found'
     ];
     /**
      * The rules for validation.
@@ -26,12 +23,7 @@ class Person extends Model
      * @var array
      */
     public static $rules = array(
-        'code' => 'required',
-        'region_id' => 'required',
-        'ekatte' => 'required',
-        'name' => 'required',
-        'lat' => 'required',
-        'lng' => 'required'
+        'name' => 'required'
     );
     
     /**
@@ -59,6 +51,16 @@ class Person extends Model
         return $this->hasOne('Slavic\MissingPersons\Model\LastPlace', 'person_id');
     }
     
+    public function profile()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\PersonProfile', 'person_id');
+    }
+    
+    public function found()
+    {
+        return $this->hasOne('Slavic\MissingPersons\Model\PersonFound', 'person_id');
+    }
+    
     public function eyes_color()
     {
         return $this->hasOne('Slavic\MissingPersons\Model\EyesColor', 'eyes_color');
@@ -76,8 +78,14 @@ class Person extends Model
      */
     public static function getLatest($number = 16)
     {
-        $records = self::select(DB::raw(DB::getTablePrefix().'persons.*, ' . DB::getTablePrefix() . 'person_photo.thumb'))            ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
-        $records = $records->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
+        $records = self::select(DB::raw(
+            DB::getTablePrefix().'persons.*, ' .
+            DB::getTablePrefix() . 'person_photo.thumb, ' .
+            DB::getTablePrefix() . 'person_found.* '
+            ))
+            ->leftJoin('person_found', 'persons.id', '=', 'person_found.person_id')
+            ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
+        $records = $records->whereNull('person_found.person_id')->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
         return $records->take($number);
     }
     
