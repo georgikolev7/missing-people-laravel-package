@@ -10,7 +10,7 @@ class CreatePersonPhotoTable extends Migration
     {
         Schema::create('person_photo', function (Blueprint $table) {
             $table->bigIncrements('photo_id');
-            $table->integer('person_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade')->onUpdate('cascade');
             $table->string('name', 255);
             $table->integer('size')->unsigned();

@@ -12,7 +12,7 @@ class CreateSettlementsTable extends Migration
         Schema::create('settlements', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('place_id')->unsigned();
-            $table->integer('region_id')->unsigned();
+            $table->bigInteger('region_id')->unsigned();
             $table->foreign('region_id')->references('id')->on('regions')->onDelete('cascade')->onUpdate('cascade');
             $table->string('code', 50);
             $table->integer('ekatte')->unsigned();

@@ -10,7 +10,7 @@ class CreatePersonLastPlaceTable extends Migration
     {
         Schema::create('person_last_place', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('person_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade')->onUpdate('cascade');
             $table->decimal('lat', 10, 8);
             $table->decimal('lng', 11, 8);

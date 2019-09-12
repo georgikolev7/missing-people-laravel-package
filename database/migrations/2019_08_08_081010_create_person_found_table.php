@@ -10,7 +10,7 @@ class CreatePersonFoundTable extends Migration
     {
         Schema::create('person_found', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('person_id')->unsigned();
+            $table->bigInteger('person_id')->unsigned();
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_found');
             $table->tinyInteger('dead');
