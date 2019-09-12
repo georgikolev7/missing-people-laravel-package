@@ -21,6 +21,7 @@ class CreateSettlementsTable extends Migration
             $table->decimal('lng', 11, 8);
             $table->integer('people')->unsigned();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
         
         DB::statement('ALTER TABLE settlements CHANGE ekatte ekatte INT(5) UNSIGNED ZEROFILL NOT NULL');

@@ -19,6 +19,7 @@ class CreatePersonPhotoTable extends Migration
             $table->string('thumb', 255);
             $table->string('icon', 255);
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
     

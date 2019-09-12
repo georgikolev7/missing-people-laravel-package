@@ -11,11 +11,13 @@ class CreateColorsTables extends Migration
         Schema::create('eyes_color', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 55);
+            $table->engine = 'InnoDB';
         });
         
         Schema::create('hair_color', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name', 55);
+            $table->engine = 'InnoDB';
         });
     }
     

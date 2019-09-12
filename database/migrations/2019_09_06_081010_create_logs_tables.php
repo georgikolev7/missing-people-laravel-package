@@ -17,6 +17,7 @@ class CreateLogsTables extends Migration
             
             // foreign
             $table->foreign('person_id')->references('id')->on('persons');
+            $table->engine = 'InnoDB';
         });
     }
     

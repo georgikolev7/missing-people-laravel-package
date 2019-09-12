@@ -14,6 +14,7 @@ class CreatePersonFoundTable extends Migration
             $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade')->onUpdate('cascade');
             $table->date('date_found');
             $table->tinyInteger('dead');
+            $table->engine = 'InnoDB';
         });
     }
     

@@ -22,6 +22,7 @@ class CreatePersonProfileTable extends Migration
             $table->integer('region_id')->unsigned();
             $table->integer('settlement_id')->unsigned();
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
     

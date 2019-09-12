@@ -20,6 +20,7 @@ class CreateRegionsTable extends Migration
             $table->integer('settlements')->unsigned();
             $table->enum('type', ['area', 'city']);
             $table->integer('sort_order')->unsigned();
+            $table->engine = 'InnoDB';
         });
     }
     

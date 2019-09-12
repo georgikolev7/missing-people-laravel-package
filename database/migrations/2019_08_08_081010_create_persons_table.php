@@ -15,6 +15,7 @@ class CreatePersonsTable extends Migration
             $table->string('name', 255);
             $table->date('last_seen');
             $table->unique('hash');
+            $table->engine = 'InnoDB';
         });
     }
     

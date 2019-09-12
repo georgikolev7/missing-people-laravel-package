@@ -17,6 +17,7 @@ class CreatePersonLastPlaceTable extends Migration
             $table->string('address', 255);
             $table->tinyInteger('exact_address');
             $table->timestamps();
+            $table->engine = 'InnoDB';
         });
     }
     
