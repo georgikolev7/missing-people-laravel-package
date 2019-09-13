@@ -4,11 +4,10 @@
 	<meta charset="utf-8">	
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    {{ Khead::getTitle() }}
     <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="robots" content="@yield('robots', 'index, follow')">
-    {{ Khead::getMeta('description') }}
-    {{ Khead::getMeta('keywords') }}	
+    {!! SEO::generate() !!}
+	
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.10/vue.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- Styles -->
