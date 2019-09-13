@@ -21,7 +21,6 @@ class MapController extends Controller
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.page_title_map'));
         SEOTools::setDescription(\Lang::get('missing-persons::missing.default_meta_description'));
-        SEOTools::addKeyword(\Lang::get('missing-persons::missing.default_meta_keywords'));
         // End SEO optimization
         
         return view('missing-persons::map', [

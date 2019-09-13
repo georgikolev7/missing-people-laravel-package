@@ -24,7 +24,6 @@ class PersonController extends Controller
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
         SEOTools::setDescription(\Lang::get('missing-persons::missing.default_meta_description'));
-        SEOTools::addKeyword(\Lang::get('missing-persons::missing.default_meta_keywords'));
         // End SEO optimization
         
         return view('missing-persons::persons.index', [
@@ -47,7 +46,6 @@ class PersonController extends Controller
         $meta_description = strip_tags($person->description);
         $meta_description = snippet($meta_description, 160);
         SEOTools::setDescription($meta_description);
-        SEOTools::addKeyword($meta_description);
         // End SEO optimization
         
         return view('missing-persons::persons.view', [
