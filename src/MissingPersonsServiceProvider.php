@@ -3,6 +3,7 @@
 namespace Slavic\MissingPersons;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 use Illuminate\Filesystem\Filesystem;
@@ -17,6 +18,7 @@ class MissingPersonsServiceProvider extends ServiceProvider
         $this->registerRoutes();
         $this->registerResources();
         $this->defineAssetPublishing();
+        $this->registerSchedules();
     }
     
     public function register()
@@ -24,6 +26,35 @@ class MissingPersonsServiceProvider extends ServiceProvider
         if (!defined('MP_PATH')) {
             define('MP_PATH', realpath(__DIR__.'/../'));
         }
+        
+        $this->registerCommands();
+    }
+    
+    /**
+     * Register the Horizon Artisan commands.
+     *
+     * @return void
+     */
+    protected function registerCommands()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                Console\Commands\RecalculationOfAgeCommand::class
+            ]);
+        }
+    }
+    
+    /**
+     * Register scheduled tasks
+     * 
+     * @return void
+     */
+    protected function registerSchedules()
+    {
+        $this->app->booted(function () {
+            $schedule = $this->app->make(Schedule::class);
+            $schedule->command('persons:recalculation')->weekly();
+        });
     }
     
     

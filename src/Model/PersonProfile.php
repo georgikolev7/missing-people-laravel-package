@@ -44,4 +44,14 @@ class PersonProfile extends Model
     {
         return self::where('person_id', '=', $person_id)->get();
     }
+    
+    /**
+     * Get all items.
+     *
+     * @return collect
+     */
+    public static function getAll()
+    {
+        return self::select('*');
+    }
 }
