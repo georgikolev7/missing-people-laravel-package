@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Storage;
 use File;
-use Khead;
 use Lang;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
@@ -22,18 +22,9 @@ class PersonController extends Controller
         $persons = \Slavic\MissingPersons\Model\Person::getLatest();
         
         // SEO optimization
-        Khead::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
-        
-        Khead::setMeta('description', [
-            'name' => 'description',
-            'content' => \Lang::get('missing-persons::missing.default_meta_description')
-        ]);
-        
-        Khead::setMeta('keywords', [
-            'name' => 'keywords',
-            'content' => \Lang::get('missing-persons::missing.default_meta_keywords')
-        ]);
-        
+        SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
+        SEOTools::setDescription(\Lang::get('missing-persons::missing.default_meta_description'));
+        SEOTools::addKeyword(\Lang::get('missing-persons::missing.default_meta_keywords'));
         // End SEO optimization
         
         return view('missing-persons::persons.index', [
@@ -52,21 +43,11 @@ class PersonController extends Controller
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
         
         // SEO optimization
-        Khead::setTitle($person->name);
-        
+        SEOTools::setTitle($person->name);
         $meta_description = strip_tags($person->description);
         $meta_description = snippet($meta_description, 160);
-        
-        Khead::setMeta('description', [
-            'name' => 'description',
-            'content' => $meta_description
-        ]);
-        
-        Khead::setMeta('keywords', [
-            'name' => 'keywords',
-            'content' => $meta_description
-        ]);
-        
+        SEOTools::setDescription($meta_description);
+        SEOTools::addKeyword($meta_description);
         // End SEO optimization
         
         return view('missing-persons::persons.view', [
@@ -109,7 +90,7 @@ class PersonController extends Controller
     public function edit(Request $request)
     {
         // Set title
-        Khead::setTitle(\Lang::get('missing-persons::missing.page_person_edit'));
+        SEOTools::setTitle(\Lang::get('missing-persons::missing.page_person_edit'));
         
         $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
         
@@ -178,7 +159,7 @@ class PersonController extends Controller
     public function create(Request $request)
     {
         // Set title
-        Khead::setTitle(\Lang::get('missing-persons::missing.page_person_create'));
+        SEOTools::setTitle(\Lang::get('missing-persons::missing.page_person_create'));
         
         $person = new \Slavic\MissingPersons\Model\Person();
        
