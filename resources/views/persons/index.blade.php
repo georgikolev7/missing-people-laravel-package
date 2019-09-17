@@ -1,9 +1,12 @@
-﻿@extends('missing-persons::layouts.default')
+﻿@extends('missing-persons::layouts.default')
 @section('title', __('missing-persons::missing.missing_persons'))
 @section('description', __('missing-persons::missing.default_meta_description'))
-@section('keywords', __('missing-persons::missing.default_meta_keywords'))
+@section('keywords', __('missing-persons::missing.default_meta_keywords'))
 @section('page_css')
-@stop
+@stop
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('home') }}
+@stop
 @section('content')
     <div class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
@@ -12,14 +15,14 @@
                 <div class="max-w-sm overflow-hidden">
                     <a href="persons/view/{{ $person->hash }}">
                         @if ($person->thumb)
-                            <img src="{{ url('storage/' . $person->thumb) }}" alt="{{ $person->name }}" class="w-full" />
+                            <img src="{{ url('storage/' . $person->thumb) }}" alt="{{ $person->name }}" class="w-full p-photo" />
                         @else
                             <img src="no-photo.png" alt="{{ $person->name }}" class="w-full" />
                         @endif
                     </a>					
-                    <div class="py-3 px-3 border-gray-400 border">
-                        <div class="font-bold text-base mb-2">{{ $person->name }}</div>
-                        <p class="text-sm text-gray-600 flex items-center">
+                    <div class="py-3 px-3 text-center">
+                        <div class="font-bold text-base mb-2 uppercase">{{ $person->name }}</div>
+                        <p class="text-sm text-gray-600 text-center">
                             @if ($person['last_place'])
                                 {{ $person['last_place']->address }}
                             @endif
@@ -38,6 +41,6 @@
         @endforelse
         </div>
     </div>
-@endsection
+@endsection
 @section('page_js')
 @stop

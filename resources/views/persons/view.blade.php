@@ -1,7 +1,10 @@
 ﻿@extends('missing-persons::layouts.default')
 @section('page_css')
-    <link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+    <link  href="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
 @stop
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('person_view', $person) }}
+@stop
 @section('content')
     <div class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
@@ -45,6 +48,6 @@
     </div>
 @endsection
 @section('page_js')
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
     <script type="text/javascript" src="{{ asset('vendor/missing/js/pages/persons.view.js') }}"></script>
 @stop

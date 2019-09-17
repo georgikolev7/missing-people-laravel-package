@@ -29,6 +29,7 @@
     "require": {
         "laravel-frontend-presets/tailwindcss": "^1.0",
         "intervention/image": "^2.5",
+        "davejamesmiller/laravel-breadcrumbs": "^5.3",
         "artesaos/seotools": "^0.16.0"
     }
 }

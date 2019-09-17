@@ -246,7 +246,7 @@ class PersonController extends Controller
             $log = \Slavic\MissingPersons\Model\Logs::updateOrCreate([
                 'person_id' => $person->id,
             ], [
-                'ip_address' => $request()->ip(),
+                'ip_address' => $request->ip(),
                 'user_agent' => $request->header('User-Agent')
             ]);
             

@@ -10,7 +10,7 @@ class CreateLogsTables extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('person_id');
+            $table->bigInteger('person_id')->unsigned();
             $table->string('ip_address');
             $table->text('user_agent');
             $table->timestamps();
