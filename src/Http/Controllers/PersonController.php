@@ -4,10 +4,12 @@ namespace Slavic\MissingPersons\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Storage;
 use File;
 use Lang;
 use Artesaos\SEOTools\Facades\SEOTools;
+use Artesaos\SEOTools\Facades\OpenGraph;
 use Slavic\MissingPersons\Libraries\FileUploader;
 
 class PersonController extends Controller
@@ -19,7 +21,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = \Slavic\MissingPersons\Model\Person::getLatest();
+        $persons = \Slavic\MissingPersons\Model\Person::getLatest(20);
         
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
@@ -43,9 +45,12 @@ class PersonController extends Controller
         
         // SEO optimization
         SEOTools::setTitle($person->name);
-        $meta_description = strip_tags($person->description);
+        $meta_description = strip_tags($person->profile->description);
         $meta_description = snippet($meta_description, 160);
         SEOTools::setDescription($meta_description);
+        
+        OpenGraph::setUrl(URL::current());
+        OpenGraph::addImage(URL::to('/') . Storage::url($person->photos[0]->file));
         // End SEO optimization
         
         return view('missing-persons::persons.view', [
