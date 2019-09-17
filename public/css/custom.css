@@ -9,3 +9,25 @@ img.leaflet-marker-icon
     padding: 0px;
     box-shadow: 0 3px 14px rgba(0,0,0,0.4);
 }
+nav.bg-indigo-900
+{
+    background-color: #0f3f78;
+    text-shadow: 0 1px 0 #000;
+    filter: dropshadow(color=#000,offx=0,offy=1);
+    box-sizing: content-box;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+}
+nav.bg-indigo-900 .text-gray-300
+{
+    color: #b3c9e6;
+}
+#map-box
+{
+    min-height: 500px;
+}
+img.p-photo
+{
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
