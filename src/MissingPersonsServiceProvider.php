@@ -76,6 +76,7 @@ class MissingPersonsServiceProvider extends ServiceProvider
             'middleware' => 'web',
         ], function () {
             $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/web.php');
+            $this->loadRoutesFrom(dirname(__DIR__, 1) . '/routes/breadcrumbs.php');
         });
     }
     

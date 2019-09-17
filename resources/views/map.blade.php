@@ -4,6 +4,9 @@
     <link href="{{ asset('vendor/missing/js/leafletjs/leaflet.markercluster/markercluster.default.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/missing/js/leafletjs/leaflet.markercluster/markercluster.css') }}" rel="stylesheet">
 @stop
+@section('breadcrumbs')
+    {{ Breadcrumbs::render('map') }}
+@stop
 @section('content')
     <div class="container my-12 mx-auto px-4 md:px-12">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
