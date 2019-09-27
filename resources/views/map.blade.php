@@ -8,7 +8,7 @@
     {{ Breadcrumbs::render('map') }}
 @stop
 @section('content')
-    <div class="container my-12 mx-auto px-4 md:px-12">
+    <div class="w-screen mx-auto">
         <div class="flex flex-wrap overflow-hidden xl:-mx-2">
             <div id="map-box" class="h-64 w-full"></div>
         </div>
