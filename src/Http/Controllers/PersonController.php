@@ -21,7 +21,7 @@ class PersonController extends Controller
      */
     public function index()
     {
-        $persons = \Slavic\MissingPersons\Model\Person::getLatest(20);
+        $persons = \Slavic\MissingPersons\Model\Person::getLatest(40);
         
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
@@ -352,9 +352,9 @@ class PersonController extends Controller
     
     /**
      * Sort order of person photos
-     * 
+     *
      * @param \Illuminate\Http\Request $request
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function list_photo_sort(Request $request)
