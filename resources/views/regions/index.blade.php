@@ -1,9 +1,9 @@
-﻿@extends('missing-persons::layouts.default')
-@section('robots', 'noindex, nofollow')
+@extends('missing-persons::layouts.default')
+@section('robots', 'noindex, nofollow')
 @section('page_css')
-@stop
+@stop
 @section('content')
-    index region
-@endsection
+    213
+@endsection
 @section('page_js')
 @stop

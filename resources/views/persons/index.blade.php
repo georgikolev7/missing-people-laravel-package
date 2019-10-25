@@ -1,4 +1,4 @@
-﻿@extends('missing-persons::layouts.default')
+@extends('missing-persons::layouts.default')
 @section('title', __('missing-persons::missing.missing_persons'))
 @section('description', __('missing-persons::missing.default_meta_description'))
 @section('keywords', __('missing-persons::missing.default_meta_keywords'))

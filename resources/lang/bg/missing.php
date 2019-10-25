@@ -1,11 +1,11 @@
-<?php
-
-return [
+<?php
+
+return [
     'gender_male' => 'Мъж',
     'gender_female' => 'Жена',
-    'region_name' => 'Име на областта',
-    'ekatte' => 'ЕКАТТЕ',
-    'please_fill_region_name' => 'Моля, попълнете правилно името на областта',
+    'region_name' => 'Име на областта',
+    'ekatte' => 'ЕКАТТЕ',
+    'please_fill_region_name' => 'Моля, попълнете правилно името на областта',
     'please_fill_person_full_name' => 'Моля, попълнете трите имена на лицето',
     'placeholder_region_name' => 'пример: Област Видин',
     'description' => 'Описание',
@@ -34,9 +34,11 @@ return [
     'map' => 'Карта',
     'missing_persons' => 'Изчезнали лица',
     'wanted_persons' => 'Издирвани лица',
+    'person_is_wanted' => 'Лицето е с влязла в сила присъда',
     'add_person' => 'Обявяване',
     'set_found' => 'Отбелязване като "открито"',
     'person_is_found' => 'Открито',
+    'person_is_found_dead' => 'Лицето е открито починало',
     'set_found_dead' => 'Отбелязване като "открито починало"',
     'page_title_map' => 'Карта на изчезналите лица',
     'page_person_create' => 'Обявяване на лице',
