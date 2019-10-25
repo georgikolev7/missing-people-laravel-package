@@ -11,7 +11,7 @@ class CreatePersonProfileTable extends Migration
         Schema::create('person_profile', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('person_id')->unsigned();
-            $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('person_id')->references('id')->on('persons')->onDelete('cascade');
             $table->integer('age')->unsigned();
             $table->integer('height')->unsigned();
             $table->year('year_of_birth');
