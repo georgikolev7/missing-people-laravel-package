@@ -38,7 +38,7 @@ class PersonFound extends Model
      *
      * @return object
      */
-    public static function getByPerson($person_id)
+    public static function getById($person_id)
     {
         return self::where('person_id', '=', $person_id)->get();
     }
