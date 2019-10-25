@@ -13,12 +13,14 @@ $(function() {
         subdomains: ['a', 'b', 'c']
     }).addTo(map);
 
-    var markerClusters = L.markerClusterGroup();
+    var markerClusters = L.markerClusterGroup({
+        maxClusterRadius: 25
+    });
 
     $.each(window.locations, function(idx, person) {
         var myIcon = L.icon({
             iconUrl: 'storage/' + person.icon,
-            iconRetinaUrl: 'vendor/missing/js/leafletjs/images/marker-icon-x2.png',
+            iconRetinaUrl: 'storage/' + person.icon,
             iconSize: [45, 45],
             iconAnchor: [9, 21],
             popupAnchor: [0, -14]
