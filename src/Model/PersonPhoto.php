@@ -4,6 +4,9 @@ namespace Slavic\MissingPersons\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
+use DB;
+use File;
 
 class PersonPhoto extends Model
 {
@@ -38,6 +41,23 @@ class PersonPhoto extends Model
         // store
     }
     
+    
+    public static function remove($photo_name, $person_id)
+    {
+        $photo = self::where(['name' => $photo_name, 'person_id' => $person_id])->first();
+        $path = self::dirPath($person_id);
+        
+        File::delete(
+            storage_path('app/public/') . $photo->file,
+            storage_path('app/public/') . $photo->thumb,
+            storage_path('app/public/') . $photo->icon
+        );
+        
+        self::where('photo_id', $photo->photo_id)->delete();
+        
+        return array('result' => true);
+    }
+    
     /**
      * Create thumbnails of uploaded pictures
      *
@@ -53,8 +73,9 @@ class PersonPhoto extends Model
             $img = \Image::make($file['file']);
             $img->fit(778, 1000)->save($file['file']);
             $img->fit(350, 450)->save($thumbnail_name);
+            
             // Icon size for markers on the map
-            $img->fit(35, 45)->save($icon_name);
+            $img->fit(45, 45)->save($icon_name);
             
             $files[$key]['thumb'] = $thumbnail_name;
             $photo = new self();            
