@@ -26,6 +26,8 @@ class Person extends Model
         'name' => 'required'
     );
     
+    protected $dates = ['created_at'];
+    
     /**
      * Associations.
      *
@@ -81,11 +83,15 @@ class Person extends Model
         $records = self::select(DB::raw(
             DB::getTablePrefix().'persons.*, ' .
             DB::getTablePrefix() . 'person_photo.thumb, ' .
+            DB::getTablePrefix() . 'person_last_place.*, ' .
+            DB::getTablePrefix() . 'person_profile.*, ' .
             DB::getTablePrefix() . 'person_found.* '
-            ))
+        ))
             ->leftJoin('person_found', 'persons.id', '=', 'person_found.person_id')
+            ->leftJoin('person_last_place', 'persons.id', '=', 'person_last_place.person_id')
+            ->leftJoin('person_profile', 'persons.id', '=', 'person_profile.person_id')
             ->leftJoin('person_photo', 'persons.id', '=', 'person_photo.person_id');
-        $records = $records->whereNull('person_found.person_id')->groupBy('persons.id')->orderBy('persons.created_at', 'DESC')->get();
+        $records = $records->whereNull('person_found.person_id')->groupBy('persons.id')->orderBy('persons.last_seen', 'DESC')->get();
         return $records->take($number);
     }
     
