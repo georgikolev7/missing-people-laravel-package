@@ -28,6 +28,7 @@ class MissingPersonsServiceProvider extends ServiceProvider
         }
         
         $this->registerCommands();
+        $this->mergeConfigs();
     }
     
     /**
@@ -39,21 +40,23 @@ class MissingPersonsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                Console\Commands\RecalculationOfAgeCommand::class
+                Console\Commands\RecalculationOfAgeCommand::class,
+                Console\Commands\CountPersonsCommand::class
             ]);
         }
     }
     
     /**
      * Register scheduled tasks
-     * 
+     *
      * @return void
      */
     protected function registerSchedules()
     {
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
-            $schedule->command('persons:recalculation')->weekly();
+            $schedule->command('persons:recalculation')->daily();
+            $schedule->command('count:persons')->daily();
         });
     }
     
