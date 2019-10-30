@@ -22,6 +22,7 @@ class PersonController extends Controller
     public function index()
     {
         $persons = \Slavic\MissingPersons\Model\Person::getLatest(40);
+        $stats = \Slavic\MissingPersons\Model\Person::getStatistics();
         
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
@@ -29,7 +30,8 @@ class PersonController extends Controller
         // End SEO optimization
         
         return view('missing-persons::persons.index', [
-            'persons' => $persons
+            'persons' => $persons,
+            'stats' => $stats
         ]);
     }
     

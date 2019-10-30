@@ -4,6 +4,7 @@ namespace Slavic\MissingPersons\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Cache;
 
 class Person extends Model
 {
@@ -96,6 +97,44 @@ class Person extends Model
     }
     
     /**
+     * Get statistics
+     *
+     * @return collect
+     */
+    public static function getStatistics($number = 16)
+    {
+        $stats = [];
+        $minutes = 5;
+        
+        $stats['missing_persons'] = Cache::remember('missing_persons', $minutes, function () {
+            $persons = DB::table('persons')->where('type', '=', 'missing_person')->get();
+            return $persons->count();
+        });
+        
+        $stats['wanted_persons'] = Cache::remember('wanted_persons', $minutes, function () {
+            $persons = DB::table('persons')->where('type', '=', 'wanted_criminal')->get();
+            return $persons->count();
+        });
+        
+        $stats['persons_found'] = Cache::remember('persons_found', $minutes, function () {
+            $persons_found = DB::table('person_found')->get();
+            return $persons_found->count();
+        });
+        
+        $stats['persons_found_dead'] = Cache::remember('persons_found_dead', $minutes, function () {
+            $persons_found_dead = DB::table('person_found')->where('dead', '=', 1)->get();
+            return $persons_found_dead->count();
+        });
+        
+        $stats['top_region'] = Cache::remember('top_region', $minutes, function () {
+            $persons_found_dead = DB::table('person_found')->where('dead', '=', 1)->get();
+            return $persons_found_dead->count();
+        });
+        
+        return (object)$stats;
+    }
+    
+    /**
      * Find item by hash.
      *
      * @return object
@@ -103,7 +142,7 @@ class Person extends Model
     public static function getByHash($hash)
     {
         return self::where('hash', '=', $hash)->first();
-    }    
+    }    
     
     /**
      * Get all items.

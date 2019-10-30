@@ -7,7 +7,7 @@ return [
     'ekatte' => 'ЕКАТТЕ',
     'please_fill_region_name' => 'Моля, попълнете правилно името на областта',
     'please_fill_person_full_name' => 'Моля, попълнете трите имена на лицето',
-    'placeholder_region_name' => 'пример: Област Видин',
+    'placeholder_region_name' => 'пример: Област Видин',
     'description' => 'Описание',
     'submit_person' => 'Публикуване на издирваното лице',
     'save_edit_person' => 'Записване на промените',
@@ -46,5 +46,9 @@ return [
     'site_title' => 'Издирвани лица на територията на България',
     'default_meta_title' => 'Издирвани лица на територията на България',
     'default_meta_keywords' => 'издирвани лица, безследно изчезнали, осъдени лица',
-    'default_meta_description' => 'Платформа за обявяване на безследно изчезнали или издирвани лица на територията на България.'
+    'default_meta_description' => 'Платформа за обявяване на безследно изчезнали или издирвани лица на територията на България.',
+    'stats_missing_persons' => 'Безследно изчезнали лица',
+    'stats_wanted_persons' => 'Осъдени лица',
+    'stats_persons_found' => 'Брой открити лица',
+    'stats_persons_found_dead' => 'Брой лица, открити починали'
 ];
