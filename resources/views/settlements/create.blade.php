@@ -1,7 +1,11 @@
-﻿@extends('missing-persons::layouts.default')
+@extends('missing-persons::layouts.default')
+
 @section('page_css')
-@stop
-@section('content')	create blade
-@endsection
+@stop
+
+@section('content')
+    213
+@endsection
+
 @section('page_js')
 @stop

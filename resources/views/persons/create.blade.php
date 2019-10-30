@@ -1,4 +1,4 @@
-﻿@extends('missing-persons::layouts.default')
+@extends('missing-persons::layouts.default')
 
 @section('robots', 'noindex, nofollow')
 

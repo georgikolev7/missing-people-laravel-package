@@ -22,6 +22,7 @@ class PersonController extends Controller
     public function index()
     {
         $persons = \Slavic\MissingPersons\Model\Person::getLatest(40);
+        $stats = \Slavic\MissingPersons\Model\Person::getStatistics();
         
         // SEO optimization
         SEOTools::setTitle(\Lang::get('missing-persons::missing.missing_persons'));
@@ -29,7 +30,8 @@ class PersonController extends Controller
         // End SEO optimization
         
         return view('missing-persons::persons.index', [
-            'persons' => $persons
+            'persons' => $persons,
+            'stats' => $stats
         ]);
     }
     
@@ -324,12 +326,16 @@ class PersonController extends Controller
      */
     public function set_found(Request $request)
     {
-        $person = \Slavic\MissingPersons\Model\PersonFound::getByHash($request->hash);
+        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
         
-        $person->date_found = date('Y-m-d');
-        $person->save();
+        $person_found = \Slavic\MissingPersons\Model\PersonFound::updateOrCreate([
+            'person_id' => $person->id,
+        ], [
+            'dead' => 0,
+            'date_found' => date('Y-m-d')
+        ]);
         
-        return \Response::json($person, 200);
+        return \Response::json($person_found, 200);
     }
     
     /**
@@ -341,13 +347,16 @@ class PersonController extends Controller
      */
     public function set_found_dead(Request $request)
     {
-        $person = \Slavic\MissingPersons\Model\PersonFound::getByHash($request->hash);
+        $person = \Slavic\MissingPersons\Model\Person::getByHash($request->hash);
         
-        $person->dead = 1;
-        $person->date_found = date('Y-m-d');
-        $person->save();
+        $person_found = \Slavic\MissingPersons\Model\PersonFound::updateOrCreate([
+            'person_id' => $person->id,
+        ], [
+            'dead' => 1,
+            'date_found' => date('Y-m-d')
+        ]);
         
-        return \Response::json($person, 200);
+        return \Response::json($person_found, 200);
     }
     
     /**

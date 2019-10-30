@@ -9,17 +9,17 @@ use Illuminate\Support\ServiceProvider;
 
 class TranslationServiceProvider extends ServiceProvider
 {
-    /** 
-     * The path to the current lang files. 
-     * 
-     * @var string 
+    /**
+     * The path to the current lang files.
+     *
+     * @var string
      */
     protected $langPath;
 
-    /** 
-     * Create a new service provider instance. 
-     * 
-     * @return void 
+    /**
+     * Create a new service provider instance.
+     *
+     * @return void
      */
     public function __construct()
     {
